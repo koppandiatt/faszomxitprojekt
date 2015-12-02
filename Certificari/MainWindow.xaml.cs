@@ -29,10 +29,11 @@ namespace Certificari
         public MainWindow()
         {
             InitializeComponent();
-            string mess = DAL.getInstance().iud("INSERT INTO Document (Nume,Path) VALUES ('Foaie Matricola', 'D:/Documente/Scoala/')");
+            /*string mess = DAL.getInstance().iud("INSERT INTO Document (Nume,Path) VALUES ('Foaie Matricola', 'D:/Documente/Scoala/')");
             MessageBox.Show(mess);
             DataTable dt = DAL.getInstance().select("SELECT * FROM Document");
-            MessageBox.Show(dt.Rows.Count.ToString());
+            MessageBox.Show(dt.Rows.Count.ToString());*/
+            RefreshCandidati();
             
         }
 
@@ -47,6 +48,7 @@ namespace Certificari
         {
             Candidat candidat = new Candidat();
             candidat.ShowDialog();
+            RefreshCandidati();
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -89,6 +91,11 @@ namespace Certificari
             {
                 nomenclatorErrortblock.Text = ex.Message;
             }
+        }
+
+        private void RefreshCandidati()
+        {
+            this.DataGridCandidati.ItemsSource = DAL.getInstance().select("SELECT * FROM Candidat").DefaultView;
         }
 
        

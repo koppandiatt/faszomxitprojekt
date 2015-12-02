@@ -19,7 +19,11 @@
                         <TextBox HorizontalAlignment="Left" Height="23" Padding="2" Margin="10,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="231"/>
                         <Button Content="Cauta" HorizontalAlignment="Left" Margin="246,39,0,0" VerticalAlignment="Top" Width="47" Height="23"/>
                     </Grid>
-                    <DataGrid Margin="0,77,0,0"/>
+                    <DataGrid x:Name="DataGridCandidati" Margin="0,77,0,0" CanUserAddRows="False" AutoGenerateColumns="True">
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Header=""></DataGridCheckBoxColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem Header="Nomenclator">
