@@ -27,16 +27,23 @@
                 
                 
                 <Grid Background="#FFE5E5E5" >
-                    <StackPanel Orientation="Vertical">
-                        <StackPanel Margin="0 5 0 0" Orientation="Horizontal">
-                            <Label  Content="Document Source"></Label>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Margin="0 5 0 0" Orientation="Horizontal">
+                            <Label  Content="Documente Source"></Label>
                             <TextBox Name="docSrctxtbox" VerticalContentAlignment="Center"  Margin="5 0 0 0" MinWidth="200"  ></TextBox>
-                            <Label  Content="Document Name"></Label>
+                            <Label  Content="Documente Nume"></Label>
                             <TextBox Name="docNametxtbox" VerticalContentAlignment="Center" Margin="5 0 0 0" MinWidth="100"></TextBox>
-                            <Button Margin="10 0 0 0" Content="Add Document"   Width="105" Click="Add_document" />
+                            <Button Margin="10 0 0 0" Content="Adauga"   Width="105" Click="Add_document" />
                         </StackPanel>
-                        <TextBlock Name="nomenclatorErrortblock" Visibility="Collapsed" Text="dasdas" Foreground="Red" FontSize="15" FontWeight="SemiBold"  ></TextBlock>
-                        <DataGrid x:Name="GridDocumentList" CanUserAddRows="False"  AutoGenerateColumns="True"   Margin="0,5,0,0" >
+                    <DataGrid x:Name="GridDocumentList" Grid.Row="1"  ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto" CanUserAddRows="False"  AutoGenerateColumns="True"   Margin="0,5,0,0" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={local:RowToIndexConverter}}" />
                                
@@ -45,9 +52,15 @@
 
                         </DataGrid>
 
-                       
+                        
+                    
+                        <DockPanel Margin="0 4 0 4" Grid.Row="3">
+                            <Button DockPanel.Dock="Left" Content="Sterge" ></Button>
+                            <TextBlock HorizontalAlignment="Center" Name="nomenclatorErrortblock"  Text="" Foreground="Red" FontSize="15" FontWeight="SemiBold"  ></TextBlock>
 
-                    </StackPanel>
+                        </DockPanel>
+                       
+                 
 
 
                     

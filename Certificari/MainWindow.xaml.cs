@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Certificari.Views;
+using Certificari.Classes;
 using System.Data;
 
 namespace Certificari
@@ -28,6 +29,8 @@ namespace Certificari
         public MainWindow()
         {
             InitializeComponent();
+            DataTable dt = DAL.getInstance().select("SELECT * FROM Document");
+            MessageBox.Show(dt.Rows.Count.ToString());
             
         }
 
@@ -46,7 +49,7 @@ namespace Certificari
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            nomenclatorErrortblock.Visibility = Visibility.Collapsed;
+            nomenclatorErrortblock.Text = "";
             ///TODO fetch datas from DB
 
             TestBinding = new DataTable();
@@ -62,7 +65,7 @@ namespace Certificari
 
         private void Add_document(object sender, RoutedEventArgs e)
         {
-            nomenclatorErrortblock.Visibility = Visibility.Collapsed;
+            nomenclatorErrortblock.Text = "";
             string docSrc = docSrctxtbox.Text;
             string docName = docNametxtbox.Text;
 
@@ -82,7 +85,6 @@ namespace Certificari
             }
             catch (Exception ex)
             {
-                nomenclatorErrortblock.Visibility = Visibility.Visible;
                 nomenclatorErrortblock.Text = ex.Message;
             }
         }
