@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Certificari.Views;
 using Certificari.Classes;
 using System.Data;
+using System.Windows.Controls.Primitives;
 
 namespace Certificari
 {
@@ -103,6 +104,26 @@ namespace Certificari
                 nomenclatorErrortblock.Text = ex.Message;
             }
         }
+
+    
+       
+
+        private void Sterge_Click(object sender, RoutedEventArgs e)
+        {
+
+            for (int i = 0; i <GridDocumentList.Items.Count ; i++)
+            {
+
+                DataGridRow row = (DataGridRow)GridDocumentList.ItemContainerGenerator.ContainerFromIndex(i);
+                CheckBox checkBox = Tools.FindChild<CheckBox>(row, "checkedNom");
+                if (checkBox != null && checkBox.IsChecked == true)
+                {
+                    MessageBox.Show("sadas" + i);
+                }
+            }  
+        }
+
+     
 
        
     }
