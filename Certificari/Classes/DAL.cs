@@ -70,12 +70,14 @@ namespace Certificari.Classes
                     command.ExecuteNonQuery();
                 }
             }
-            catch(Exception e)
+            catch(SqlException se)
             {
+                Console.WriteLine(query);
+                Console.WriteLine(se.Message);
                 return "Insert Error!";
             }
 
-            return "Success!";
+            return "Success";
         }
 
     }

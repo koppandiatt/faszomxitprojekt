@@ -30,10 +30,11 @@ namespace Certificari
         public MainWindow()
         {
             InitializeComponent();
-            string mess = DAL.getInstance().iud("INSERT INTO Document (Nume,Path) VALUES ('Foaie Matricola', 'D:/Documente/Scoala/')");
+            /*string mess = DAL.getInstance().iud("INSERT INTO Document (Nume,Path) VALUES ('Foaie Matricola', 'D:/Documente/Scoala/')");
             MessageBox.Show(mess);
             DataTable dt = DAL.getInstance().select("SELECT * FROM Document");
-            MessageBox.Show(dt.Rows.Count.ToString());
+            MessageBox.Show(dt.Rows.Count.ToString());*/
+            RefreshCandidati();
             
         }
 
@@ -48,6 +49,7 @@ namespace Certificari
         {
             Candidat candidat = new Candidat();
             candidat.ShowDialog();
+            RefreshCandidati();
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -60,19 +62,19 @@ namespace Certificari
             if (sender is TabControl && tabNomenclator.IsSelected)
             {
                 Console.WriteLine("sadsad");
-                nomenclatorErrortblock.Text = "";
-                ///TODO fetch datas from DB
+            nomenclatorErrortblock.Text = "";
+            ///TODO fetch datas from DB
 
-                TestBinding = new DataTable();
+            TestBinding = new DataTable();
                 TestBinding.Columns.Add("Name", typeof(string));
                 TestBinding.Columns.Add("Path", typeof(string));
-                TestBinding.Rows.Add("Alma", "ASdasdsada");
-                TestBinding.Rows.Add("sadasd", "ASdasdsada");
-                TestBinding.Rows.Add("kutya", "ASdasdsada");
-                GridDocumentList.ItemsSource = TestBinding.DefaultView;
+            TestBinding.Rows.Add("Alma", "ASdasdsada");
+            TestBinding.Rows.Add("sadasd", "ASdasdsada");
+            TestBinding.Rows.Add("kutya", "ASdasdsada");
+            GridDocumentList.ItemsSource = TestBinding.DefaultView;
+            
 
-
-            }
+        }
 
            
             
@@ -123,7 +125,7 @@ namespace Certificari
             }  
         }
 
-     
+       
 
        
     }
