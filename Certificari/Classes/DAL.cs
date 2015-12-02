@@ -48,5 +48,23 @@ namespace Certificari.Classes
             da.Fill(dt);
             return dt;
         }
+
+        public String iud(String query)
+        {
+            try
+            {
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch(Exception e)
+            {
+                return "Insert Error!";
+            }
+
+            return "Success!";
+        }
+
     }
 }

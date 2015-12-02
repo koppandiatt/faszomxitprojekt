@@ -29,6 +29,8 @@ namespace Certificari
         public MainWindow()
         {
             InitializeComponent();
+            string mess = DAL.getInstance().iud("INSERT INTO Document (Id,Nume,Path) VALUES (6,'Foaie Matricola', 'D:/Documente/Scoala/')");
+            MessageBox.Show(mess);
             DataTable dt = DAL.getInstance().select("SELECT * FROM Document");
             MessageBox.Show(dt.Rows.Count.ToString());
             
