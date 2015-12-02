@@ -5,15 +5,17 @@
         Height="500" Width="725"
         MinHeight="400" MinWidth="600" Icon="Assets/logo.png" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TabControl Margin="0,25,0,10" IsEnabled="False">
+        <TabControl Margin="0,25,0,10" IsEnabled="True">
             <TabItem Header="Operatii">
                 <Grid Background="#FFE5E5E5">
                     <Grid Height="72" VerticalAlignment="Top" Background="#FFE2E0E0">
                         <RadioButton Content="Candidati" HorizontalAlignment="Left" IsChecked="True" Margin="10,10,0,0" VerticalAlignment="Top"/>
                         <RadioButton Content="Programe acreditate" HorizontalAlignment="Left" Margin="114,10,0,0" VerticalAlignment="Top"/>
-                        <Button IsEnabled="False" Content="Adauga" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Width="75"/>
-                        <Button IsEnabled="False" Content="Editeaza" HorizontalAlignment="Left" Margin="90,42,0,0" VerticalAlignment="Top" Width="75"/>
-                        <Button IsEnabled="False" Content="Sterge" HorizontalAlignment="Left" Margin="170,42,0,0" VerticalAlignment="Top" Width="75"/>
+                        <Button IsEnabled="True" Content="Adauga" HorizontalAlignment="Left" Margin="280,7,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+                        <Button IsEnabled="False" Content="Editeaza" HorizontalAlignment="Left" Margin="360,7,0,0" VerticalAlignment="Top" Width="75"/>
+                        <Button IsEnabled="False" Content="Sterge" HorizontalAlignment="Left" Margin="440,7,0,0" VerticalAlignment="Top" Width="75"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Padding="2" Margin="10,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="231"/>
+                        <Button Content="Cauta" HorizontalAlignment="Left" Margin="246,39,0,0" VerticalAlignment="Top" Width="47" Height="23"/>
                     </Grid>
                     <DataGrid Margin="0,77,0,0"/>
                 </Grid>

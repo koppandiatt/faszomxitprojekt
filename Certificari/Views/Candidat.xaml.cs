@@ -15,13 +15,18 @@ using System.Windows.Shapes;
 namespace Certificari.Views
 {
     /// <summary>
-    /// Interaction logic for InputBox.xaml
+    /// Interaction logic for Candidat.xaml
     /// </summary>
-    public partial class InputBox : Window
+    public partial class Candidat : Window
     {
-        public InputBox()
+        public Candidat()
         {
             InitializeComponent();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

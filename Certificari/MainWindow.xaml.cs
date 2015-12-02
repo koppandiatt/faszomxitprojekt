@@ -31,5 +31,11 @@ namespace Certificari
             Unitate unitate = new Unitate();
             unitate.ShowDialog();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Candidat candidat = new Candidat();
+            candidat.ShowDialog();
+        }
     }
 }

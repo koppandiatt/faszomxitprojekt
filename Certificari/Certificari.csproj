@@ -53,8 +53,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Views\InputBox.xaml.cs">
-      <DependentUpon>InputBox.xaml</DependentUpon>
+    <Compile Include="Views\Candidat.xaml.cs">
+      <DependentUpon>Candidat.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Unitate.xaml.cs">
       <DependentUpon>Unitate.xaml</DependentUpon>
@@ -71,7 +71,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\InputBox.xaml">
+    <Page Include="Views\Candidat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
