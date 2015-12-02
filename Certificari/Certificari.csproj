@@ -53,6 +53,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behavior\RowToIndexConverter.cs" />
+    <Compile Include="Classes\Validators.cs" />
     <Compile Include="Views\Candidat.xaml.cs">
       <DependentUpon>Candidat.xaml</DependentUpon>
     </Compile>
@@ -107,9 +109,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\logo.png" />
   </ItemGroup>
