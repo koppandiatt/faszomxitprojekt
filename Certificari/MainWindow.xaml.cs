@@ -51,16 +51,29 @@ namespace Certificari
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            nomenclatorErrortblock.Text = "";
-            ///TODO fetch datas from DB
+            if (e.OriginalSource != sender)
+            {
+                return;
+            }
+          
+            if (sender is TabControl && tabNomenclator.IsSelected)
+            {
+                Console.WriteLine("sadsad");
+                nomenclatorErrortblock.Text = "";
+                ///TODO fetch datas from DB
 
-            TestBinding = new DataTable();
-            TestBinding.Columns.Add("Name",typeof(string));
-            TestBinding.Columns.Add("Path",typeof(string));
-            TestBinding.Rows.Add("Alma", "ASdasdsada");
-            TestBinding.Rows.Add("sadasd", "ASdasdsada");
-            TestBinding.Rows.Add("kutya", "ASdasdsada");
-            GridDocumentList.ItemsSource = TestBinding.DefaultView;
+                TestBinding = new DataTable();
+                TestBinding.Columns.Add("Name", typeof(string));
+                TestBinding.Columns.Add("Path", typeof(string));
+                TestBinding.Rows.Add("Alma", "ASdasdsada");
+                TestBinding.Rows.Add("sadasd", "ASdasdsada");
+                TestBinding.Rows.Add("kutya", "ASdasdsada");
+                GridDocumentList.ItemsSource = TestBinding.DefaultView;
+
+
+            }
+
+           
             
 
         }
