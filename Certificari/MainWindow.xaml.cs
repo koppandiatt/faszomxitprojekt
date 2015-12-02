@@ -30,6 +30,7 @@ namespace Certificari
         {
             Unitate unitate = new Unitate();
             unitate.ShowDialog();
+            int a = 1;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
