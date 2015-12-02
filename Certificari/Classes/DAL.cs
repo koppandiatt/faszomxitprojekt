@@ -42,11 +42,23 @@ namespace Certificari.Classes
 
         public DataTable select(String query)
         {
-            SqlCommand command = new SqlCommand(query, conn);
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(command);
-            da.Fill(dt);
-            return dt;
+            try
+            {
+
+                SqlCommand command = new SqlCommand(query, conn);
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(command);
+                da.Fill(dt);
+                return dt;
+
+            }
+            catch (SqlException se)
+            {
+                MessageBox.Show(se.Message, "DB Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+          
         }
 
         public String iud(String query)

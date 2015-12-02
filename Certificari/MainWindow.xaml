@@ -26,7 +26,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Nomenclator">
+            <TabItem Name="tabNomenclator" Header="Nomenclator">
                
                 
                 
@@ -45,13 +45,18 @@
                             <TextBox Name="docNametxtbox" VerticalContentAlignment="Center" Margin="5 0 0 0" MinWidth="100"></TextBox>
                             <Button Margin="10 0 0 0" Content="Adauga"   Width="105" Click="Add_document" />
                         </StackPanel>
-                    <DataGrid x:Name="GridDocumentList" Grid.Row="1"  ScrollViewer.CanContentScroll="True" 
-      ScrollViewer.VerticalScrollBarVisibility="Auto"
-      ScrollViewer.HorizontalScrollBarVisibility="Auto" CanUserAddRows="False"  AutoGenerateColumns="True"   Margin="0,5,0,0" >
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={local:RowToIndexConverter}}" />
-                               
-                            </DataGrid.Columns>
+                    <DataGrid x:Name="GridDocumentList" ColumnWidth="*" Grid.Row="1"  SelectionUnit="FullRow" CanUserAddRows="False" SelectionMode="Extended"  AutoGenerateColumns="True"   Margin="0,5,0,0" >
+                            
+                            <DataGrid.RowHeaderTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                    <CheckBox Name="checkedNom" IsChecked="{Binding Path=IsSelected,
+                      RelativeSource={RelativeSource FindAncestor,
+                      AncestorType={x:Type DataGridRow}}}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGrid.RowHeaderTemplate>
+                  
 
 
                         </DataGrid>
@@ -59,7 +64,7 @@
                         
                     
                         <DockPanel Margin="0 4 0 4" Grid.Row="3">
-                            <Button DockPanel.Dock="Left" Content="Sterge" ></Button>
+                            <Button Name="Sterge" DockPanel.Dock="Left" Content="Sterge" Click="Sterge_Click" ></Button>
                             <TextBlock HorizontalAlignment="Center" Name="nomenclatorErrortblock"  Text="" Foreground="Red" FontSize="15" FontWeight="SemiBold"  ></TextBlock>
 
                         </DockPanel>

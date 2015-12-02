@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Certificari.Views;
 using Certificari.Classes;
 using System.Data;
+using System.Windows.Controls.Primitives;
 
 namespace Certificari
 {
@@ -53,16 +54,29 @@ namespace Certificari
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (e.OriginalSource != sender)
+            {
+                return;
+            }
+          
+            if (sender is TabControl && tabNomenclator.IsSelected)
+            {
+                Console.WriteLine("sadsad");
             nomenclatorErrortblock.Text = "";
             ///TODO fetch datas from DB
 
             TestBinding = new DataTable();
-            TestBinding.Columns.Add("Name",typeof(string));
-            TestBinding.Columns.Add("Path",typeof(string));
+                TestBinding.Columns.Add("Name", typeof(string));
+                TestBinding.Columns.Add("Path", typeof(string));
             TestBinding.Rows.Add("Alma", "ASdasdsada");
             TestBinding.Rows.Add("sadasd", "ASdasdsada");
             TestBinding.Rows.Add("kutya", "ASdasdsada");
             GridDocumentList.ItemsSource = TestBinding.DefaultView;
+            
+
+        }
+
+           
             
 
         }
@@ -93,10 +107,25 @@ namespace Certificari
             }
         }
 
-        private void RefreshCandidati()
+    
+       
+
+        private void Sterge_Click(object sender, RoutedEventArgs e)
         {
-            this.DataGridCandidati.ItemsSource = DAL.getInstance().select("SELECT * FROM Candidat").DefaultView;
+
+            for (int i = 0; i <GridDocumentList.Items.Count ; i++)
+            {
+
+                DataGridRow row = (DataGridRow)GridDocumentList.ItemContainerGenerator.ContainerFromIndex(i);
+                CheckBox checkBox = Tools.FindChild<CheckBox>(row, "checkedNom");
+                if (checkBox != null && checkBox.IsChecked == true)
+                {
+                    MessageBox.Show("sadas" + i);
+                }
+            }  
         }
+
+       
 
        
     }
