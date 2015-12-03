@@ -34,7 +34,7 @@ namespace Certificari
             MessageBox.Show(mess);
             DataTable dt = DAL.getInstance().select("SELECT * FROM Document");
             MessageBox.Show(dt.Rows.Count.ToString());*/
-            RefreshCandidati();
+            //RefreshCandidati();
             
         }
 
@@ -49,7 +49,7 @@ namespace Certificari
         {
             Candidat candidat = new Candidat();
             candidat.ShowDialog();
-            RefreshCandidati();
+            //RefreshCandidati();
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
