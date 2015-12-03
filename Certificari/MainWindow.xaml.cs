@@ -16,6 +16,7 @@ using Certificari.Views;
 using Certificari.Classes;
 using System.Data;
 using System.Windows.Controls.Primitives;
+using System.ComponentModel;
 
 namespace Certificari
 {
@@ -28,13 +29,12 @@ namespace Certificari
         private DataTable _DTdocuments;
         private DataTable _DTcandidats;
 
+        
+
         public MainWindow()
         {
             InitializeComponent();
-            /*string mess = DAL.getInstance().iud("INSERT INTO Document (Nume,Path) VALUES ('Foaie Matricola', 'D:/Documente/Scoala/')");
-            MessageBox.Show(mess);
-            DataTable dt = DAL.getInstance().select("SELECT * FROM Document");
-            MessageBox.Show(dt.Rows.Count.ToString());*/
+
            
             
         }
@@ -48,7 +48,7 @@ namespace Certificari
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Candidat candidat = new Candidat();
+            Candidat candidat = new Candidat(false);
             candidat.ShowDialog();
        
         }
@@ -157,8 +157,27 @@ namespace Certificari
             }
         }
 
-       
+        private void GridCandidati_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
 
+            if (GridCandidati.SelectedItems.Count == 1) menuCandi.Visibility = Visibility.Visible;
+            else menuCandi.Visibility = Visibility.Collapsed;
+        
+        }
+
+        private void Detalii_Click(object sender, RoutedEventArgs e)
+        {
+            DataRow row = getSelectedRow();
+            Candidat candidat = new Candidat(true,row);
+            candidat.ShowDialog();
+
+        }
+
+
+        private DataRow getSelectedRow()
+        {
+            return ((DataRowView)GridCandidati.SelectedItem).Row;
+        }
        
     }
 }

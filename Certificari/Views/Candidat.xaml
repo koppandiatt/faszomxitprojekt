@@ -9,19 +9,25 @@
         <Label Content="Nr. Matricol" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="79" Height="25"/>
         <Label Content="Nume" HorizontalAlignment="Left" Margin="94,10,0,0" VerticalAlignment="Top" Width="191" Height="25"/>
         <Label Content="Prenume" HorizontalAlignment="Left" Margin="290,10,0,0" VerticalAlignment="Top" Width="200" Height="25"/>
-        <TextBox x:Name="txtNumar" HorizontalAlignment="Left" Padding="2" Height="23" Margin="12,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77"/>
-        <TextBox x:Name="txtNume" HorizontalAlignment="Left" Padding="2" Height="23" Margin="94,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191"/>
-        <TextBox x:Name="txtPrenume" Padding="2" Height="23" Margin="290,35,18,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtNumar" HorizontalAlignment="Left" Padding="2" Height="23" Margin="12,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtNume" HorizontalAlignment="Left" Padding="2" Height="23" Margin="94,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtPrenume" Padding="2" Height="23" Margin="290,35,18,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Label Content="Prenume Tata" HorizontalAlignment="Left" Margin="12,78,0,0" VerticalAlignment="Top" Width="235" Height="25"/>
         <Label Content="Prenume Mama" Margin="252,78,18,0" VerticalAlignment="Top" Height="25"/>
-        <TextBox x:Name="txtTata" HorizontalAlignment="Left" Padding="2" Height="23" Margin="12,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235"/>
-        <TextBox x:Name="txtMama" Padding="2" Height="23" Margin="252,103,18,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtTata" HorizontalAlignment="Left" Padding="2" Height="23" Margin="12,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtMama" Padding="2" Height="23" Margin="252,103,18,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Label Content="CNP" HorizontalAlignment="Left" Margin="12,126,0,0" VerticalAlignment="Top" Width="165" Height="25"/>
         <Label Content="Data Nasterii" HorizontalAlignment="Left" Margin="182,126,0,0" VerticalAlignment="Top" Width="122" Height="25"/>
         <Label Content="Locul Nasterii" Margin="309,126,19,0" VerticalAlignment="Top" Height="25"/>
-        <TextBox x:Name="txtCNP" HorizontalAlignment="Left" Padding="2" Height="23" Margin="12,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"/>
-        <DatePicker x:Name="txtDataNasterii" HorizontalAlignment="Left" Margin="182,150,0,0" VerticalAlignment="Top" Width="122"/>
-        <TextBox x:Name="txtLoculN" Padding="2" Height="23" Margin="309,151,19,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtCNP" HorizontalAlignment="Left" Padding="2" Height="23" Margin="12,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"/>
+        <DatePicker  x:Name="txtDataNasterii" HorizontalAlignment="Left" Margin="182,150,0,0" VerticalAlignment="Top" Width="122">
+            <DatePicker.Resources>
+                <Style TargetType="DatePickerTextBox">
+                    <Setter Property="IsReadOnly" Value="{Binding isDetalii}"/>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtLoculN" Padding="2" Height="23" Margin="309,151,19,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Separator Height="20" Margin="10,58,19,0" VerticalAlignment="Top"/>
         <Separator Height="20" Margin="11,174,18,0" VerticalAlignment="Top"/>
         <Label Content="Strada:" HorizontalAlignment="Left" Margin="11,192,0,0" VerticalAlignment="Top" Width="220"/>
@@ -29,28 +35,28 @@
         <Label Content="Bloc:" HorizontalAlignment="Right" Margin="0,194,102,0" VerticalAlignment="Top" Width="42"/>
         <Label Content="Scara:" HorizontalAlignment="Right" Margin="0,194,58,0" VerticalAlignment="Top" Width="42"/>
         <Label Content="Ap.:" HorizontalAlignment="Right" Margin="0,194,14,0" VerticalAlignment="Top" Width="42"/>
-        <TextBox x:Name="txtStrada" Height="23" Padding="2" TextAlignment="Center" Margin="12,218,214,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtNr" Height="23" Padding="2" TextAlignment="Center" Margin="0,218,153,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="52"/>
-        <TextBox x:Name="txtBloc" Height="23" Padding="2" TextAlignment="Center" Margin="0,218,106,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="38"/>
-        <TextBox x:Name="txtScara" Height="23" Padding="2" TextAlignment="Center" Margin="0,218,62,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="35"/>
-        <TextBox x:Name="txtAp" Height="23" Padding="2" TextAlignment="Center" Margin="0,218,18,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="35"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtStrada" Height="23" Padding="2" TextAlignment="Center" Margin="12,218,214,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtNr" Height="23" Padding="2" TextAlignment="Center" Margin="0,218,153,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="52"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtBloc" Height="23" Padding="2" TextAlignment="Center" Margin="0,218,106,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="38"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtScara" Height="23" Padding="2" TextAlignment="Center" Margin="0,218,62,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="35"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtAp" Height="23" Padding="2" TextAlignment="Center" Margin="0,218,18,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="35"/>
         <Label Content="Localitate:" HorizontalAlignment="Left" Margin="11,241,0,0" VerticalAlignment="Top" Width="133"/>
         <Label Content="Judet:" HorizontalAlignment="Right" Margin="0,241,234,0" VerticalAlignment="Top" Width="133"/>
         <Label Content="Cod postal:" HorizontalAlignment="Right" Margin="0,241,144,0" VerticalAlignment="Top" Width="94"/>
-        <TextBox x:Name="txtLocalitatea" Height="23" Padding="2" TextAlignment="Center" Margin="12,267,371,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtJudet" Height="23" Padding="2" TextAlignment="Center" Margin="0,267,247,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="113"/>
-        <TextBox x:Name="txtCP" Height="23" Padding="2" TextAlignment="Center" Margin="0,267,148,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtLocalitatea" Height="23" Padding="2" TextAlignment="Center" Margin="12,267,371,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtJudet" Height="23" Padding="2" TextAlignment="Center" Margin="0,267,247,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="113"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtCP" Height="23" Padding="2" TextAlignment="Center" Margin="0,267,148,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90"/>
         <Label Content="Telefon:" HorizontalAlignment="Right" Margin="0,241,41,0" VerticalAlignment="Top" Width="98"/>
-        <TextBox x:Name="txtTelefon" Height="23" Padding="2" TextAlignment="Center" Margin="0,267,18,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="121"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtTelefon" Height="23" Padding="2" TextAlignment="Center" Margin="0,267,18,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="121"/>
         <Separator Height="20" Margin="10,290,19,0" VerticalAlignment="Top"/>
         <Label Content="Studii" HorizontalAlignment="Left" Margin="11,302,0,0" VerticalAlignment="Top" Width="235" Height="25"/>
         <Label Content="Profesia" HorizontalAlignment="Left" Margin="251,302,0,0" VerticalAlignment="Top" Width="238" Height="25"/>
-        <TextBox x:Name="txtStudii" HorizontalAlignment="Left" Padding="2" Height="23" Margin="11,327,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235"/>
-        <TextBox x:Name="txtProfesia" Padding="2" Height="23" Margin="251,327,19,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtStudii" HorizontalAlignment="Left" Padding="2" Height="23" Margin="11,327,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtProfesia" Padding="2" Height="23" Margin="251,327,19,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Label Content="Locul de munca" HorizontalAlignment="Left" Margin="12,350,0,0" VerticalAlignment="Top" Width="235" Height="25"/>
-        <TextBox x:Name="txtLocMunca" Padding="2" Height="23" Margin="10,375,19,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button x:Name="btnAdd" Content="Adauga" HorizontalAlignment="Left" Margin="70,436,0,0" VerticalAlignment="Top" Width="133" Height="36" Click="btnAdd_Click"/>
-        <Button x:Name="btnClose" Content="Renunta" Margin="290,436,85,0" VerticalAlignment="Top" Height="36" Click="btnClose_Click"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtLocMunca" Padding="2" Height="23" Margin="10,375,19,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button Visibility="{Binding isButtonsEnable}" x:Name="btnAdd" Content="Adauga" HorizontalAlignment="Left" Margin="70,436,0,0" VerticalAlignment="Top" Width="133" Height="36" Click="btnAdd_Click"/>
+        <Button Visibility="{Binding isButtonsEnable}" x:Name="btnClose" Content="Renunta" Margin="290,436,85,0" VerticalAlignment="Top" Height="36" Click="btnClose_Click"/>
         <Label x:Name="labelError" Content="" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="70,405,0,0" VerticalAlignment="Top" Width="349"/>
 
     </Grid>

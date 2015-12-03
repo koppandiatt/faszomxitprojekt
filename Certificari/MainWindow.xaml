@@ -7,6 +7,11 @@
         Title="Certificari" 
         Height="500" Width="725"
         MinHeight="400" MinWidth="600" Icon="Assets/logo.png" WindowStartupLocation="CenterScreen">
+    
+    <Window.Resources>
+        <local:OneReturnsTrueConverter x:Key="OneReturnsTrueConverter"/>
+    </Window.Resources>
+    
     <Grid>
         <TabControl Margin="0,25,0,10" IsEnabled="True" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Name="tabOperati" Header="Operatii">
@@ -20,7 +25,7 @@
                         <TextBox HorizontalAlignment="Left" Height="23" Padding="2" Margin="10,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="231"/>
                         <Button Content="Cauta" HorizontalAlignment="Left" Margin="246,39,0,0" VerticalAlignment="Top" Width="47" Height="23"/>
                     </Grid>
-                    <DataGrid  Name="GridCandidati" Margin="0,77,0,0" CanUserAddRows="False" AutoGenerateColumns="True">
+                    <DataGrid PreviewMouseRightButtonDown="GridCandidati_PreviewMouseRightButtonDown" Name="GridCandidati" Margin="0,77,0,0" CanUserAddRows="False" AutoGenerateColumns="True">
 
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={local:RowToIndexConverter}}" Header="Nr." />
@@ -32,6 +37,16 @@
                                 </Grid>
                             </DataTemplate>
                         </DataGrid.RowHeaderTemplate>
+                        
+                        
+                        
+                        <DataGrid.ContextMenu >
+                            <ContextMenu Name="menuCandi" ItemsSource="{Binding RelativeSource={RelativeSource Self}}">
+                                <MenuItem Header="Editare"  />
+                                <MenuItem Header="Detalii" Click="Detalii_Click"  />
+                                <MenuItem Header="Listare documente"  />
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
                     </DataGrid>
                 </Grid>
             </TabItem>
