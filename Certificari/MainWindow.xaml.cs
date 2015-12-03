@@ -170,9 +170,12 @@ namespace Certificari
         }
 
        
+          
+
+        private void GridCandidati_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
             if (GridCandidati.SelectedItems.Count == 1) menuCandi.Visibility = Visibility.Visible;
             else menuCandi.Visibility = Visibility.Collapsed;
-
         }
 
         private void Detalii_Click(object sender, RoutedEventArgs e)
