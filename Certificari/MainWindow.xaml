@@ -3,77 +3,62 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Certificari.Behavior"
          xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        
         Title="Certificari" 
         Height="500" Width="725"
         MinHeight="400" MinWidth="600" Icon="Assets/logo.png" WindowStartupLocation="CenterScreen">
     <Grid>
         <TabControl Margin="0,25,0,10" IsEnabled="True" SelectionChanged="TabControl_SelectionChanged">
-            <TabItem Header="Operatii">
+            <TabItem Name="tabOperati" Header="Operatii">
                 <Grid Background="#FFE5E5E5">
                     <Grid Height="72" VerticalAlignment="Top" Background="#FFE2E0E0">
                         <RadioButton Content="Candidati" HorizontalAlignment="Left" IsChecked="True" Margin="10,10,0,0" VerticalAlignment="Top"/>
                         <RadioButton Content="Programe acreditate" HorizontalAlignment="Left" Margin="114,10,0,0" VerticalAlignment="Top"/>
                         <Button IsEnabled="True" Content="Adauga" HorizontalAlignment="Left" Margin="280,7,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
                         <Button IsEnabled="False" Content="Editeaza" HorizontalAlignment="Left" Margin="360,7,0,0" VerticalAlignment="Top" Width="75"/>
-                        <Button IsEnabled="False" Content="Sterge" HorizontalAlignment="Left" Margin="440,7,0,0" VerticalAlignment="Top" Width="75"/>
+                        <Button Name="stergeStudents" Content="Sterge" HorizontalAlignment="Left" Margin="440,7,0,0" VerticalAlignment="Top" Width="75" Click="stergeStudents_Click"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Padding="2" Margin="10,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="231"/>
                         <Button Content="Cauta" HorizontalAlignment="Left" Margin="246,39,0,0" VerticalAlignment="Top" Width="47" Height="23"/>
                     </Grid>
-                    <DataGrid x:Name="DataGridCandidati" Margin="0,77,0,0" CanUserAddRows="False" AutoGenerateColumns="True">
+                    <DataGrid  Name="GridCandidati" Margin="0,77,0,0" CanUserAddRows="False" AutoGenerateColumns="True">
+
                         <DataGrid.Columns>
-                            <DataGridCheckBoxColumn Header=""></DataGridCheckBoxColumn>
+                            <DataGridTextColumn Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={local:RowToIndexConverter}}" Header="Nr." />
                         </DataGrid.Columns>
+                        <DataGrid.RowHeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <CheckBox Name="checkedCand" IsChecked="{Binding Path=IsSelected,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}}}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGrid.RowHeaderTemplate>
                     </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem Name="tabNomenclator" Header="Nomenclator">
-               
-                
-                
-                <Grid Background="#FFE5E5E5" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
 
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Margin="0 5 0 0" Orientation="Horizontal">
-                            <Label  Content="Documente Source"></Label>
-                            <TextBox Name="docSrctxtbox" VerticalContentAlignment="Center"  Margin="5 0 0 0" MinWidth="200"  ></TextBox>
-                            <Label  Content="Documente Nume"></Label>
-                            <TextBox Name="docNametxtbox" VerticalContentAlignment="Center" Margin="5 0 0 0" MinWidth="100"></TextBox>
-                            <Button Margin="10 0 0 0" Content="Adauga"   Width="105" Click="Add_document" />
-                        </StackPanel>
-                    <DataGrid x:Name="GridDocumentList" ColumnWidth="*" Grid.Row="1"  SelectionUnit="FullRow" CanUserAddRows="False" SelectionMode="Extended"  AutoGenerateColumns="True"   Margin="0,5,0,0" >
-                            
-                            <DataGrid.RowHeaderTemplate>
-                                <DataTemplate>
-                                    <Grid>
+
+
+                <Grid Background="#FFE5E5E5" >
+                    <Label  Content="Calea catre document" Margin="0,39,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"></Label>
+                    <TextBox Name="docNametxtbox" VerticalContentAlignment="Center"  Margin="135,7,0,0" MinWidth="200" HorizontalAlignment="Left" Width="269" Height="27" VerticalAlignment="Top"  ></TextBox>
+                    <Label  Content="Denumire document" Margin="0,7,0,0" HorizontalAlignment="Left" Width="130" Height="27" VerticalAlignment="Top"></Label>
+                    <Label Name="docSrctxtbox" Content="" VerticalContentAlignment="Center" Margin="169,39,10,0" MinWidth="100" Height="27" VerticalAlignment="Top"></Label>
+                    <Button Margin="135,71,0,0" Content="Adauga" Click="Add_document" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="110" />
+                    <Button Name="Sterge" DockPanel.Dock="Left" Content="Sterge" Click="Sterge_Click" Margin="0,71,0,0" Background="#FFBF8D8D" HorizontalAlignment="Left" Width="75" Height="25" VerticalAlignment="Top" ></Button>
+                    <Label Name="nomenclatorErrortblock" Content="" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="ExtraBold" VerticalContentAlignment="Center" Margin="250,71,10,0" MinWidth="100" Height="25" VerticalAlignment="Top"></Label>
+                    <DataGrid x:Name="GridDocumentList" ColumnWidth="*" CanUserAddRows="False"  AutoGenerateColumns="True"   Margin="0,101,0,0" >
+                        <DataGrid.RowHeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
                                     <CheckBox Name="checkedNom" IsChecked="{Binding Path=IsSelected,
                       RelativeSource={RelativeSource FindAncestor,
                       AncestorType={x:Type DataGridRow}}}"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </DataGrid.RowHeaderTemplate>
-                  
-
-
-                        </DataGrid>
-
-                        
-                    
-                        <DockPanel Margin="0 4 0 4" Grid.Row="3">
-                            <Button Name="Sterge" DockPanel.Dock="Left" Content="Sterge" Click="Sterge_Click" ></Button>
-                            <TextBlock HorizontalAlignment="Center" Name="nomenclatorErrortblock"  Text="" Foreground="Red" FontSize="15" FontWeight="SemiBold"  ></TextBlock>
-
-                        </DockPanel>
-                       
-                 
-
-
-                    
-                    
+                                </Grid>
+                            </DataTemplate>
+                        </DataGrid.RowHeaderTemplate>
+                    </DataGrid>
+                    <Button Content="..." Name="btnPath" HorizontalAlignment="Left" Margin="135,39,0,0" VerticalAlignment="Top" Width="29" Height="27" Click="btnPath_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

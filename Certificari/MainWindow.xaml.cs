@@ -11,11 +11,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Certificari.Views;
 using Certificari.Classes;
 using System.Data;
 using System.Windows.Controls.Primitives;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Certificari
 {
@@ -25,7 +26,8 @@ namespace Certificari
     public partial class MainWindow : Window
     {
 
-        private DataTable TestBinding;
+        private DataTable _DTdocuments;
+        private DataTable _DTcandidats;
 
         public MainWindow()
         {
@@ -36,20 +38,20 @@ namespace Certificari
             MessageBox.Show(dt.Rows.Count.ToString());*/
             //RefreshCandidati();
             
+            
         }
 
         private void MenuUnitate_Click(object sender, RoutedEventArgs e)
         {
             Unitate unitate = new Unitate();
             unitate.ShowDialog();
-            int a = 1;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Candidat candidat = new Candidat();
             candidat.ShowDialog();
-            //RefreshCandidati();
+           // RefreshCandidati();
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -62,29 +64,41 @@ namespace Certificari
             if (sender is TabControl && tabNomenclator.IsSelected)
             {
                 Console.WriteLine("sadsad");
-            nomenclatorErrortblock.Text = "";
+            nomenclatorErrortblock.Content = "";
             ///TODO fetch datas from DB
 
-            TestBinding = new DataTable();
-                TestBinding.Columns.Add("Name", typeof(string));
-                TestBinding.Columns.Add("Path", typeof(string));
-            TestBinding.Rows.Add("Alma", "ASdasdsada");
-            TestBinding.Rows.Add("sadasd", "ASdasdsada");
-            TestBinding.Rows.Add("kutya", "ASdasdsada");
-            GridDocumentList.ItemsSource = TestBinding.DefaultView;
+            _DTdocuments = new DataTable();
+            _DTdocuments.Columns.Add("Name", typeof(string));
+            _DTdocuments.Columns.Add("Path", typeof(string));
+            _DTdocuments.Rows.Add("Alma", "ASdasdsada");
+            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
+            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
+            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
+            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
+            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
+            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
+            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
+            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
+            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
             
+            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
+            GridDocumentList.ItemsSource = _DTdocuments.DefaultView;
+
 
         }
 
-           
-            
+            if (sender is TabControl && tabOperati.IsSelected)
+            {
+               _DTcandidats = DAL.getInstance().select("Select * FROM " + DAL.Tables.Candidat);
+               this.GridCandidati.ItemsSource = _DTcandidats.DefaultView;
+            }
 
         }
 
         private void Add_document(object sender, RoutedEventArgs e)
         {
-            nomenclatorErrortblock.Text = "";
-            string docSrc = docSrctxtbox.Text;
+            nomenclatorErrortblock.Content = "";
+            string docSrc = docSrctxtbox.Content.ToString();
             string docName = docNametxtbox.Text;
 
             try
@@ -97,13 +111,13 @@ namespace Certificari
                 {
                     throw new Exception("Empty document Name!");
                 }
-                TestBinding.Rows.Add(docName, docSrc);
+                _DTdocuments.Rows.Add(docName, docSrc);
                 //TODO Update to database
 
             }
             catch (Exception ex)
             {
-                nomenclatorErrortblock.Text = ex.Message;
+                nomenclatorErrortblock.Content = ex.Message;
             }
         }
 
@@ -113,16 +127,44 @@ namespace Certificari
         private void Sterge_Click(object sender, RoutedEventArgs e)
         {
 
-            for (int i = 0; i <GridDocumentList.Items.Count ; i++)
+
+
+                DataRowView[] deleteRows = new DataRowView[GridDocumentList.SelectedItems.Count];
+                for (int i = 0; i < GridDocumentList.SelectedItems.Count; i++)
+                {
+
+                    deleteRows[i] = (DataRowView)GridDocumentList.SelectedItems[i];
+                }
+                foreach (DataRowView row in deleteRows)
+                {
+                    _DTdocuments.Rows.Remove(row.Row);
+                }
+            
+
+        }
+
+        private void stergeStudents_Click(object sender, RoutedEventArgs e)
             {
 
-                DataGridRow row = (DataGridRow)GridDocumentList.ItemContainerGenerator.ContainerFromIndex(i);
-                CheckBox checkBox = Tools.FindChild<CheckBox>(row, "checkedNom");
-                if (checkBox != null && checkBox.IsChecked == true)
+
+            DataRowView[] deleteRows = new DataRowView[GridCandidati.SelectedItems.Count];
+            for (int i = 0; i < GridCandidati.SelectedItems.Count; i++)
                 {
-                    MessageBox.Show("sadas" + i);
+                deleteRows[i] = (DataRowView)GridCandidati.SelectedItems[i];
                 }
+            foreach (DataRowView row in deleteRows)
+            {
+                _DTcandidats.Rows.Remove(row.Row);
             }  
+        }
+
+        private void btnPath_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if(ofd.ShowDialog() == true)
+            {
+                this.docSrctxtbox.Content = Path.GetFullPath(ofd.FileName);
+            }
         }
 
        

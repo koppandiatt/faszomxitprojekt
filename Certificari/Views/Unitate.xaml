@@ -1,63 +1,63 @@
 ﻿<Window x:Class="Certificari.Views.Unitate"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Unitate" Height="688" Width="452" ResizeMode="NoResize" Icon="/Certificari;component/Assets/logo.png" WindowStartupLocation="CenterScreen">
+        Title="Detalii Unitate" Height="688" Width="452" ResizeMode="NoResize" Icon="/Certificari;component/Assets/logo.png" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
     <Grid>
         <Label Content="Denumirea unitatii:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="408"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="23,36,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <Label Content="Forma de organizare:" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="193"/>
+        <TextBox Name="txtUnitate" Height="23" Padding="2" TextAlignment="Center" Margin="23,36,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Label Content="Forma de organizare:" HorizontalAlignment="Left" Margin="-184,64,0,0" VerticalAlignment="Top" Width="193"/>
         <Label Content="Denumire scurta pentru diplome:" HorizontalAlignment="Left" Margin="225,64,0,0" VerticalAlignment="Top" Width="193"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="23,90,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="236,90,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtFormaOrg" Height="23" Padding="2" TextAlignment="Center" Margin="23,90,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtDenScurta" Height="23" Padding="2" TextAlignment="Center" Margin="236,90,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Separator Height="20" Margin="10,113,10,0" VerticalAlignment="Top"/>
         <Label Content="Strada:" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Width="220"/>
         <Label Content="Nr.:" HorizontalAlignment="Left" Margin="225,133,0,0" VerticalAlignment="Top" Width="42"/>
         <Label Content="Bloc:" HorizontalAlignment="Left" Margin="282,133,0,0" VerticalAlignment="Top" Width="42"/>
         <Label Content="Scara:" HorizontalAlignment="Left" Margin="329,133,0,0" VerticalAlignment="Top" Width="42"/>
         <Label Content="Ap.:" HorizontalAlignment="Left" Margin="376,133,0,0" VerticalAlignment="Top" Width="42"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="23,159,232,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="225,159,169,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="286,159,122,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="333,159,75,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="380,159,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtStrada" Height="23" Padding="2" TextAlignment="Center" Margin="23,159,232,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtNr" Height="23" Padding="2" TextAlignment="Center" Margin="225,159,169,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtBloc" Height="23" Padding="2" TextAlignment="Center" Margin="286,159,122,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtScara" Height="23" Padding="2" TextAlignment="Center" Margin="333,159,75,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtAp" Height="23" Padding="2" TextAlignment="Center" Margin="380,159,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Label Content="Localitate:" HorizontalAlignment="Left" Margin="10,182,0,0" VerticalAlignment="Top" Width="133"/>
         <Label Content="Judet:" HorizontalAlignment="Left" Margin="148,182,0,0" VerticalAlignment="Top" Width="133"/>
         <Label Content="Cod postal:" HorizontalAlignment="Left" Margin="286,182,0,0" VerticalAlignment="Top" Width="132"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="23,208,303,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="157,208,165,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="298,208,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtLocalitate" Height="23" Padding="2" TextAlignment="Center" Margin="23,208,303,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtJudet" Height="23" Padding="2" TextAlignment="Center" Margin="157,208,165,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtCP" Height="23" Padding="2" TextAlignment="Center" Margin="298,208,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Label Content="Telefon:" HorizontalAlignment="Left" Margin="10,232,0,0" VerticalAlignment="Top" Width="193"/>
         <Label Content="Fax:" HorizontalAlignment="Left" Margin="225,232,0,0" VerticalAlignment="Top" Width="193"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="23,258,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="236,258,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtTelefon" Height="23" Padding="2" TextAlignment="Center" Margin="23,258,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtFax" Height="23" Padding="2" TextAlignment="Center" Margin="236,258,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Label Content="E-Mail:" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top" Width="193"/>
         <Label Content="Site WEB:" HorizontalAlignment="Left" Margin="225,280,0,0" VerticalAlignment="Top" Width="193"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="23,306,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="236,306,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtEmail" Height="23" Padding="2" TextAlignment="Center" Margin="23,306,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtSite" Height="23" Padding="2" TextAlignment="Center" Margin="236,306,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Separator Height="20" Margin="10,329,10,0" VerticalAlignment="Top"/>
         <Label Content="Cod fiscal:" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" Width="193"/>
         <Label Content="Cod Unic de Inregistrare:" HorizontalAlignment="Left" Margin="225,340,0,0" VerticalAlignment="Top" Width="193"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="23,366,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="236,366,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtCF" Height="23" Padding="2" TextAlignment="Center" Margin="23,366,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtCUI" Height="23" Padding="2" TextAlignment="Center" Margin="236,366,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Separator Height="20" Margin="10,389,10,0" VerticalAlignment="Top"/>
         <Label Content="Banca:" HorizontalAlignment="Left" Margin="10,404,0,0" VerticalAlignment="Top" Width="193"/>
         <Label Content="Cont IBAN:" HorizontalAlignment="Left" Margin="225,404,0,0" VerticalAlignment="Top" Width="193"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="23,430,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="236,430,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtBanca" Height="23" Padding="2" TextAlignment="Center" Margin="23,430,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtIban" Height="23" Padding="2" TextAlignment="Center" Margin="236,430,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Separator Height="20" Margin="10,453,10,0" VerticalAlignment="Top"/>
         <Label Content="Nume reprezentant legal:" HorizontalAlignment="Left" Margin="10,464,0,0" VerticalAlignment="Top" Width="193"/>
         <Label Content="Prenume reprezentant legal:" HorizontalAlignment="Left" Margin="225,464,0,0" VerticalAlignment="Top" Width="193"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="23,490,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="236,490,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtNumeRep" Height="23" Padding="2" TextAlignment="Center" Margin="23,490,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtPrenumeRep" Height="23" Padding="2" TextAlignment="Center" Margin="236,490,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Label Content="Functie:" HorizontalAlignment="Left" Margin="10,512,0,0" VerticalAlignment="Top" Width="193"/>
         <Label Content="CNP:" HorizontalAlignment="Left" Margin="225,512,0,0" VerticalAlignment="Top" Width="193"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="23,538,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Height="23" Padding="2" TextAlignment="Center" Margin="236,538,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtFunctie" Height="23" Padding="2" TextAlignment="Center" Margin="23,538,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtCNP" Height="23" Padding="2" TextAlignment="Center" Margin="236,538,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Separator Height="20" Margin="10,561,10,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnSave" Content="Salveaza" HorizontalAlignment="Left" Margin="10,609,0,0" VerticalAlignment="Top" Width="133" Height="32"/>
-        <Button x:Name="btnDelete" Content="Sterge tot" HorizontalAlignment="Left" Margin="148,609,0,0" VerticalAlignment="Top" Width="142" Height="32"/>
+        <Button x:Name="btnSave" Content="Salveaza" HorizontalAlignment="Left" Margin="10,609,0,0" VerticalAlignment="Top" Width="133" Height="32" Click="btnSave_Click"/>
+        <Button x:Name="btnDelete" Content="Sterge tot" HorizontalAlignment="Left" Margin="148,609,0,0" VerticalAlignment="Top" Width="142" Height="32" Click="btnDelete_Click"/>
         <Button x:Name="btnClose" Content="Iesire" HorizontalAlignment="Left" Margin="295,609,0,0" VerticalAlignment="Top" Width="136" Height="32" Click="btnClose_Click"/>
-        <Label Content="If Any Error" Foreground="Red"  HorizontalContentAlignment="Center" Margin="10,578,15,0" VerticalAlignment="Top"/>
+        <Label Name="labError" Content="" FontWeight="ExtraBlack" Foreground="Red"  HorizontalContentAlignment="Center" Margin="10,578,15,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
