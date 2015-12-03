@@ -165,7 +165,7 @@ namespace Certificari.Views
                 txtProfesia.Text + "','" +
                 txtLocMunca.Text + "')";
 
-            if (DAL.getInstance().iud(query) == "Success")
+            if (DAL.getInstance().InsertUpdate(query) == "Success")
             {
                 this.Close();
             }

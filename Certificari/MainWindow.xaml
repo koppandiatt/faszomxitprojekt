@@ -51,57 +51,29 @@
                 </Grid>
             </TabItem>
             <TabItem Name="tabNomenclator" Header="Nomenclator">
-               
-                
-                
+
+
+
                 <Grid Background="#FFE5E5E5" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Margin="0 5 0 0" Orientation="Horizontal">
-                            <Label  Content="Documente Source"></Label>
-                            <TextBox Name="docSrctxtbox" VerticalContentAlignment="Center"  Margin="5 0 0 0" MinWidth="200"  ></TextBox>
-                            <Label  Content="Documente Nume"></Label>
-                            <TextBox Name="docNametxtbox" VerticalContentAlignment="Center" Margin="5 0 0 0" MinWidth="100"></TextBox>
-                            <Button Margin="10 0 0 0" Content="Adauga"   Width="105" Click="Add_document" />
-                        </StackPanel>
-                    <DataGrid x:Name="GridDocumentList" ColumnWidth="*" Grid.Row="1"   CanUserAddRows="False"  AutoGenerateColumns="True"   Margin="0,5,0,0" >
-
-                     
-                        
-                            <DataGrid.RowHeaderTemplate>
-                                <DataTemplate>
-                                    <Grid>
+                    <Label  Content="Calea catre document" Margin="0,39,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"></Label>
+                    <TextBox Name="docNametxtbox" VerticalContentAlignment="Center"  Margin="135,7,0,0" MinWidth="200" HorizontalAlignment="Left" Width="269" Height="27" VerticalAlignment="Top"  ></TextBox>
+                    <Label  Content="Denumire document" Margin="0,7,0,0" HorizontalAlignment="Left" Width="130" Height="27" VerticalAlignment="Top"></Label>
+                    <Label Name="docSrctxtbox" Content="" VerticalContentAlignment="Center" Margin="169,39,10,0" MinWidth="100" Height="27" VerticalAlignment="Top"></Label>
+                    <Button Margin="135,71,0,0" Content="Adauga" Click="Add_document" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="110" />
+                    <Button Name="Sterge" DockPanel.Dock="Left" Content="Sterge" Click="Sterge_Click" Margin="0,71,0,0" Background="#FFBF8D8D" HorizontalAlignment="Left" Width="75" Height="25" VerticalAlignment="Top" ></Button>
+                    <Label Name="nomenclatorErrortblock" Content="" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="ExtraBold" VerticalContentAlignment="Center" Margin="250,71,10,0" MinWidth="100" Height="25" VerticalAlignment="Top"></Label>
+                    <DataGrid x:Name="GridDocumentList" ColumnWidth="*" CanUserAddRows="False"  AutoGenerateColumns="True"   Margin="0,101,0,0" >
+                        <DataGrid.RowHeaderTemplate>
+                            <DataTemplate>
+                                <Grid>
                                     <CheckBox Name="checkedNom" IsChecked="{Binding Path=IsSelected,
                       RelativeSource={RelativeSource FindAncestor,
                       AncestorType={x:Type DataGridRow}}}"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </DataGrid.RowHeaderTemplate>
-                        
-                            
-                  
-
-
-                        </DataGrid>
-
-                        
-                    
-                        <DockPanel Margin="0 4 0 4" Grid.Row="3">
-                            <Button Name="Sterge" DockPanel.Dock="Left" Content="Sterge" Click="Sterge_Click" ></Button>
-                            <TextBlock HorizontalAlignment="Center" Name="nomenclatorErrortblock"  Text="" Foreground="Red" FontSize="15" FontWeight="SemiBold"  ></TextBlock>
-
-                        </DockPanel>
-                       
-                 
-
-
-                    
-                    
+                                </Grid>
+                            </DataTemplate>
+                        </DataGrid.RowHeaderTemplate>
+                    </DataGrid>
+                    <Button Content="..." Name="btnPath" HorizontalAlignment="Left" Margin="135,39,0,0" VerticalAlignment="Top" Width="29" Height="27" Click="btnPath_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

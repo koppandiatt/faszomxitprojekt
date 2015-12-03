@@ -22,7 +22,13 @@ namespace Certificari.Classes
             }
             catch (SqlException se)
             {
-                MessageBox.Show(se.Message, "DB Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                //MessageBox.Show(se.Message, "DB Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine(se.Message);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                //MessageBox.Show(e.Message, "DB Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
         }
@@ -54,14 +60,15 @@ namespace Certificari.Classes
             }
             catch (SqlException se)
             {
-                MessageBox.Show(se.Message, "DB Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Console.WriteLine(se.Message);
+                //MessageBox.Show(se.Message, "DB Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return null;
           
         }
 
-        public String iud(String query)
+        public string InsertUpdate(String query)
         {
             try
             {
@@ -78,6 +85,37 @@ namespace Certificari.Classes
             }
 
             return "Success";
+        }
+
+        public string Delete(string Table, int Id)
+        {
+            try
+            {
+                string query = "UPDATE " + Table + "SET Status=0 WHERE Id="+Id;
+                using(SqlCommand com = new SqlCommand(query, conn))
+                {
+                    com.ExecuteNonQuery();
+                }
+            }
+            catch(SqlException se){
+                Console.WriteLine(se.Message);
+                return "Error!";
+            }
+            catch(Exception e){
+                Console.WriteLine(e.Message);
+                return "Error!";
+            }
+
+            return "Success";
+        }
+
+        public static class Tables
+        {
+
+            public const string Candidat = "Candidat";
+            public const string Document = "Document";
+            public const string Unitate = "Unitate";
+         
         }
 
     }

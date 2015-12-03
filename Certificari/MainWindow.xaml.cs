@@ -11,12 +11,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Certificari.Views;
 using Certificari.Classes;
 using System.Data;
 using System.Windows.Controls.Primitives;
-using System.ComponentModel;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Certificari
 {
@@ -34,7 +34,11 @@ namespace Certificari
         public MainWindow()
         {
             InitializeComponent();
-
+            /*string mess = DAL.getInstance().iud("INSERT INTO Document (Nume,Path) VALUES ('Foaie Matricola', 'D:/Documente/Scoala/')");
+            MessageBox.Show(mess);
+            DataTable dt = DAL.getInstance().select("SELECT * FROM Document");
+            MessageBox.Show(dt.Rows.Count.ToString());*/
+            //RefreshCandidati();
            
             
         }
@@ -43,14 +47,13 @@ namespace Certificari
         {
             Unitate unitate = new Unitate();
             unitate.ShowDialog();
-            int a = 1;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Candidat candidat = new Candidat(false);
             candidat.ShowDialog();
-       
+           // RefreshCandidati();
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -63,7 +66,7 @@ namespace Certificari
             if (sender is TabControl && tabNomenclator.IsSelected)
             {
                 Console.WriteLine("sadsad");
-            nomenclatorErrortblock.Text = "";
+            nomenclatorErrortblock.Content = "";
             ///TODO fetch datas from DB
 
             _DTdocuments = new DataTable();
@@ -88,7 +91,7 @@ namespace Certificari
 
             if (sender is TabControl && tabOperati.IsSelected)
             {
-               _DTcandidats = DAL.getInstance().select("Select * FROM Candidat");
+               _DTcandidats = DAL.getInstance().select("Select * FROM " + DAL.Tables.Candidat);
                this.GridCandidati.ItemsSource = _DTcandidats.DefaultView;
             }
 
@@ -96,8 +99,8 @@ namespace Certificari
 
         private void Add_document(object sender, RoutedEventArgs e)
         {
-            nomenclatorErrortblock.Text = "";
-            string docSrc = docSrctxtbox.Text;
+            nomenclatorErrortblock.Content = "";
+            string docSrc = docSrctxtbox.Content.ToString();
             string docName = docNametxtbox.Text;
 
             try
@@ -116,7 +119,7 @@ namespace Certificari
             }
             catch (Exception ex)
             {
-                nomenclatorErrortblock.Text = ex.Message;
+                nomenclatorErrortblock.Content = ex.Message;
             }
         }
 
@@ -157,12 +160,19 @@ namespace Certificari
             }
         }
 
-        private void GridCandidati_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private void btnPath_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if(ofd.ShowDialog() == true)
+            {
+                this.docSrctxtbox.Content = Path.GetFullPath(ofd.FileName);
+            }
+        }
 
+       
             if (GridCandidati.SelectedItems.Count == 1) menuCandi.Visibility = Visibility.Visible;
             else menuCandi.Visibility = Visibility.Collapsed;
-        
+
         }
 
         private void Detalii_Click(object sender, RoutedEventArgs e)
