@@ -25,7 +25,8 @@ namespace Certificari
     public partial class MainWindow : Window
     {
 
-        private DataTable TestBinding;
+        private DataTable _DTdocuments;
+        private DataTable _DTcandidats;
 
         public MainWindow()
         {
@@ -34,7 +35,7 @@ namespace Certificari
             MessageBox.Show(mess);
             DataTable dt = DAL.getInstance().select("SELECT * FROM Document");
             MessageBox.Show(dt.Rows.Count.ToString());*/
-            RefreshCandidati();
+           
             
         }
 
@@ -49,7 +50,7 @@ namespace Certificari
         {
             Candidat candidat = new Candidat();
             candidat.ShowDialog();
-            RefreshCandidati();
+       
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -65,19 +66,31 @@ namespace Certificari
             nomenclatorErrortblock.Text = "";
             ///TODO fetch datas from DB
 
-            TestBinding = new DataTable();
-                TestBinding.Columns.Add("Name", typeof(string));
-                TestBinding.Columns.Add("Path", typeof(string));
-            TestBinding.Rows.Add("Alma", "ASdasdsada");
-            TestBinding.Rows.Add("sadasd", "ASdasdsada");
-            TestBinding.Rows.Add("kutya", "ASdasdsada");
-            GridDocumentList.ItemsSource = TestBinding.DefaultView;
+            _DTdocuments = new DataTable();
+            _DTdocuments.Columns.Add("Name", typeof(string));
+            _DTdocuments.Columns.Add("Path", typeof(string));
+            _DTdocuments.Rows.Add("Alma", "ASdasdsada");
+            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
+            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
+            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
+            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
+            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
+            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
+            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
+            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
+            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
+
+            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
+            GridDocumentList.ItemsSource = _DTdocuments.DefaultView;
             
 
-        }
+           }
 
-           
-            
+            if (sender is TabControl && tabOperati.IsSelected)
+            {
+               _DTcandidats = DAL.getInstance().select("Select * FROM Candidat");
+               this.GridCandidati.ItemsSource = _DTcandidats.DefaultView;
+            }
 
         }
 
@@ -97,7 +110,7 @@ namespace Certificari
                 {
                     throw new Exception("Empty document Name!");
                 }
-                TestBinding.Rows.Add(docName, docSrc);
+                _DTdocuments.Rows.Add(docName, docSrc);
                 //TODO Update to database
 
             }
@@ -113,16 +126,35 @@ namespace Certificari
         private void Sterge_Click(object sender, RoutedEventArgs e)
         {
 
-            for (int i = 0; i <GridDocumentList.Items.Count ; i++)
-            {
 
-                DataGridRow row = (DataGridRow)GridDocumentList.ItemContainerGenerator.ContainerFromIndex(i);
-                CheckBox checkBox = Tools.FindChild<CheckBox>(row, "checkedNom");
-                if (checkBox != null && checkBox.IsChecked == true)
+
+                DataRowView[] deleteRows = new DataRowView[GridDocumentList.SelectedItems.Count];
+                for (int i = 0; i < GridDocumentList.SelectedItems.Count; i++)
                 {
-                    MessageBox.Show("sadas" + i);
+
+                    deleteRows[i] = (DataRowView)GridDocumentList.SelectedItems[i];
                 }
-            }  
+                foreach (DataRowView row in deleteRows)
+                {
+                    _DTdocuments.Rows.Remove(row.Row);
+                }
+            
+
+        }
+
+        private void stergeStudents_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            DataRowView[] deleteRows = new DataRowView[GridCandidati.SelectedItems.Count];
+            for (int i = 0; i < GridCandidati.SelectedItems.Count; i++)
+            {
+                deleteRows[i] = (DataRowView)GridCandidati.SelectedItems[i];
+            }
+            foreach (DataRowView row in deleteRows)
+            {
+                _DTcandidats.Rows.Remove(row.Row);
+            }
         }
 
        
