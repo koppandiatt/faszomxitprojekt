@@ -191,6 +191,38 @@ namespace Certificari
         {
             return ((DataRowView)GridCandidati.SelectedItem).Row;
         }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            txtSearch.Text = "";
+        }
+
+        private void txtSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+            
+        }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string keyWord = txtSearch.Text.ToLower().TrimStart().TrimEnd();
+            var filtered = _DTcandidats.AsEnumerable().Where(
+                    r => r.Field<String>("NrMatricol").ToLower().Contains(keyWord)
+                    || r.Field<String>("Nume").ToLower().Contains(keyWord)
+                    || r.Field<String>("Prenume").ToLower().Contains(keyWord)
+                    || r.Field<String>("Localitate").ToLower().Contains(keyWord)
+                );
+            if (filtered.Count() > 0)
+            {
+                DataTable dt = new DataTable();
+                dt = filtered.CopyToDataTable();
+                GridCandidati.ItemsSource = dt.DefaultView;
+            }
+            else
+            {
+                GridCandidati.ItemsSource = null;
+            }
+        }
        
     }
 }

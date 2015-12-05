@@ -15,11 +15,11 @@
         <Label Content="Bloc:" HorizontalAlignment="Left" Margin="282,133,0,0" VerticalAlignment="Top" Width="42"/>
         <Label Content="Scara:" HorizontalAlignment="Left" Margin="329,133,0,0" VerticalAlignment="Top" Width="42"/>
         <Label Content="Ap.:" HorizontalAlignment="Left" Margin="376,133,0,0" VerticalAlignment="Top" Width="42"/>
-        <TextBox Name="txtStrada" Height="23" Padding="2" TextAlignment="Center" Margin="23,159,232,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Name="txtNr" Height="23" Padding="2" TextAlignment="Center" Margin="225,159,169,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Name="txtBloc" Height="23" Padding="2" TextAlignment="Center" Margin="286,159,122,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Name="txtScara" Height="23" Padding="2" TextAlignment="Center" Margin="333,159,75,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <TextBox Name="txtAp" Height="23" Padding="2" TextAlignment="Center" Margin="380,159,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBox Name="txtStrada" Height="23" Padding="2" TextAlignment="Center" Margin="23,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180"/>
+        <TextBox Name="txtNr" Height="23" Padding="2" TextAlignment="Center" Margin="0,159,169,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="52"/>
+        <TextBox Name="txtBloc" Height="23" Padding="2" TextAlignment="Center" Margin="0,159,122,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="38"/>
+        <TextBox Name="txtScara" Height="23" Padding="2" TextAlignment="Center" Margin="0,159,75,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="38"/>
+        <TextBox Name="txtAp" Height="23" Padding="2" TextAlignment="Center" Margin="0,159,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="38"/>
         <Label Content="Localitate:" HorizontalAlignment="Left" Margin="10,182,0,0" VerticalAlignment="Top" Width="133"/>
         <Label Content="Judet:" HorizontalAlignment="Left" Margin="148,182,0,0" VerticalAlignment="Top" Width="133"/>
         <Label Content="Cod postal:" HorizontalAlignment="Left" Margin="286,182,0,0" VerticalAlignment="Top" Width="132"/>

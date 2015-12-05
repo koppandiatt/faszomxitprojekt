@@ -16,16 +16,18 @@
         <TabControl Margin="0,25,0,10" IsEnabled="True" SelectionChanged="TabControl_SelectionChanged">
             <TabItem Name="tabOperati" Header="Operatii">
                 <Grid Background="#FFE5E5E5">
-                    <Grid Height="72" VerticalAlignment="Top" Background="#FFE2E0E0">
+                    <Grid Height="89" VerticalAlignment="Top" Background="#FFE2E0E0">
                         <RadioButton Content="Candidati" HorizontalAlignment="Left" IsChecked="True" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                        <RadioButton Content="Programe acreditate" HorizontalAlignment="Left" Margin="114,10,0,0" VerticalAlignment="Top"/>
-                        <Button IsEnabled="True" Content="Adauga" HorizontalAlignment="Left" Margin="280,7,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-                        <Button IsEnabled="False" Content="Editeaza" HorizontalAlignment="Left" Margin="360,7,0,0" VerticalAlignment="Top" Width="75"/>
-                        <Button Name="stergeStudents" Content="Sterge" HorizontalAlignment="Left" Margin="440,7,0,0" VerticalAlignment="Top" Width="75" Click="stergeStudents_Click"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Padding="2" Margin="10,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="231"/>
-                        <Button Content="Cauta" HorizontalAlignment="Left" Margin="246,39,0,0" VerticalAlignment="Top" Width="47" Height="23"/>
+                        <RadioButton Content="Programe acreditate" HorizontalAlignment="Left" Margin="84,10,0,0" VerticalAlignment="Top"/>
+                        <Button IsEnabled="True" Content="Adauga" HorizontalAlignment="Left" Margin="10,67,0,-15" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+                        <Button Name="stergeStudents" Content="Sterge" HorizontalAlignment="Left" Margin="90,67,0,-15" VerticalAlignment="Top" Width="75" Click="stergeStudents_Click"/>
+                        <TextBox Name="txtSearch" HorizontalAlignment="Left" Height="23" Padding="2" Margin="54,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="231" KeyUp="txtSearch_KeyUp" TextChanged="txtSearch_TextChanged"/>
+                        <Button Name="btnSearch" Content="X" HorizontalAlignment="Left" Margin="285,39,0,0" VerticalAlignment="Top" Width="26" Height="23" Click="btnSearch_Click"/>
+                        <Label Content="Cauta:" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Height="23" Width="44"/>
+                        <RadioButton Content="Contracte" HorizontalAlignment="Left" Margin="216,10,0,0" VerticalAlignment="Top"/>
+                        <RadioButton Content="Contracte Firme" HorizontalAlignment="Left" Margin="291,10,0,0" VerticalAlignment="Top"/>
                     </Grid>
-                    <DataGrid PreviewMouseRightButtonDown="GridCandidati_PreviewMouseRightButtonDown" Name="GridCandidati" Margin="0,77,0,0" CanUserAddRows="False" AutoGenerateColumns="True">
+                    <DataGrid PreviewMouseRightButtonDown="GridCandidati_PreviewMouseRightButtonDown" Name="GridCandidati" Margin="0,94,0,0" CanUserAddRows="False" AutoGenerateColumns="True">
 
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={local:RowToIndexConverter}}" Header="Nr." />

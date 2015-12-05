@@ -27,28 +27,28 @@ namespace Certificari.Views
             DataTable dt = DAL.getInstance().select("SELECT * FROM " + DAL.Tables.Unitate);
             if(dt.Rows.Count > 0)
             {
-                txtUnitate.Text = dt.Rows[0]["Denumire"].ToString();
-                txtFormaOrg.Text = dt.Rows[0]["FormaOrg"].ToString();
-                txtDenScurta.Text = dt.Rows[0]["DenumireScurta"].ToString();
-                txtStrada.Text = dt.Rows[0]["Strada"].ToString();
-                txtNr.Text = dt.Rows[0]["Nr"].ToString();
-                txtBloc.Text = dt.Rows[0]["Bloc"].ToString();
-                txtScara.Text = dt.Rows[0]["Scara"].ToString();
-                txtAp.Text = dt.Rows[0]["Ap"].ToString();
-                txtLocalitate.Text = dt.Rows[0]["Localitate"].ToString();
-                txtJudet.Text = dt.Rows[0]["Judet"].ToString();
-                txtCP.Text = dt.Rows[0]["cp"].ToString();
-                txtTelefon.Text = dt.Rows[0]["Telefon"].ToString();
-                txtFax.Text = dt.Rows[0]["Fax"].ToString();
-                txtEmail.Text = dt.Rows[0]["Email"].ToString();
-                txtCF.Text = dt.Rows[0]["CodFiscal"].ToString();
-                txtCUI.Text = dt.Rows[0]["CUI"].ToString();
-                txtBanca.Text = dt.Rows[0]["Banca"].ToString();
-                txtIban.Text = dt.Rows[0]["IBAN"].ToString();
-                txtNumeRep.Text = dt.Rows[0]["NumeReprezentant"].ToString();
-                txtPrenumeRep.Text = dt.Rows[0]["PrenumeReprezentant"].ToString();
-                txtFunctie.Text = dt.Rows[0]["Functie"].ToString();
-                txtCNP.Text = dt.Rows[0]["CNP"].ToString();
+                txtUnitate.Text = dt.Rows[0]["Denumire"].ToString().Trim();
+                txtFormaOrg.Text = dt.Rows[0]["FormaOrg"].ToString().Trim();
+                txtDenScurta.Text = dt.Rows[0]["DenumireScurta"].ToString().Trim();
+                txtStrada.Text = dt.Rows[0]["Strada"].ToString().Trim();
+                txtNr.Text = dt.Rows[0]["Nr"].ToString().Trim();
+                txtBloc.Text = dt.Rows[0]["Bloc"].ToString().Trim();
+                txtScara.Text = dt.Rows[0]["Scara"].ToString().Trim();
+                txtAp.Text = dt.Rows[0]["Ap"].ToString().Trim();
+                txtLocalitate.Text = dt.Rows[0]["Localitate"].ToString().Trim();
+                txtJudet.Text = dt.Rows[0]["Judet"].ToString().Trim();
+                txtCP.Text = dt.Rows[0]["cp"].ToString().Trim();
+                txtTelefon.Text = dt.Rows[0]["Telefon"].ToString().Trim();
+                txtFax.Text = dt.Rows[0]["Fax"].ToString().Trim();
+                txtEmail.Text = dt.Rows[0]["Email"].ToString().Trim();
+                txtCF.Text = dt.Rows[0]["CodFiscal"].ToString().Trim();
+                txtCUI.Text = dt.Rows[0]["CUI"].ToString().Trim();
+                txtBanca.Text = dt.Rows[0]["Banca"].ToString().Trim();
+                txtIban.Text = dt.Rows[0]["IBAN"].ToString().Trim();
+                txtNumeRep.Text = dt.Rows[0]["NumeReprezentant"].ToString().Trim();
+                txtPrenumeRep.Text = dt.Rows[0]["PrenumeReprezentant"].ToString().Trim();
+                txtFunctie.Text = dt.Rows[0]["Functie"].ToString().Trim();
+                txtCNP.Text = dt.Rows[0]["CNP"].ToString().Trim();
             }
         }
 
@@ -63,28 +63,28 @@ namespace Certificari.Views
             if(DAL.getInstance().select("SELECT * FROM " + DAL.Tables.Unitate).Rows.Count > 0)
             {
                 mess = DAL.getInstance().InsertUpdate("UPDATE " + DAL.Tables.Unitate +
-                   " SET" + " Denumire=" + "'" + txtUnitate.Text + "'"
-                          + ", FormaOrg=" + "'" + txtFormaOrg.Text + "'"
-                          + ", DenumireScurta=" + "'" + txtDenScurta.Text + "'"
-                          + ", Strada=" + "'" + txtStrada.Text + "'"
-                          + ", Nr=" + "'" + txtNr.Text + "'"
-                          + ", Bloc=" + "'" + txtBloc.Text + "'"
-                          + ", Scara=" + "'" + txtScara.Text + "'"
-                          + ", Ap=" + "'" + txtAp.Text + "'"
-                          + ", Localitate=" + "'" + txtLocalitate.Text + "'"
-                          + ", Judet=" + "'" + txtJudet.Text + "'"
-                          + ", cp=" + "'" + txtCP.Text + "'"
-                          + ", Telefon=" + "'" + txtTelefon.Text + "'"
-                          + ", Fax=" + "'" + txtFax.Text + "'"
-                          + ", Email=" + "'" + txtEmail.Text + "'"
-                          + ", CodFiscal=" + "'" + txtCF.Text + "'"
-                          + ", CUI=" + "'" + txtCUI.Text + "'"
-                          + ", Banca=" + "'" + txtBanca.Text + "'"
-                          + ", IBAN=" + "'" + txtIban.Text + "'"
-                          + ", NumeReprezentant=" + "'" + txtNumeRep.Text + "'"
-                          + ", PrenumeReprezentant=" + "'" + txtPrenumeRep.Text + "'"
-                          + ", Functie=" + "'" + txtFunctie.Text + "'"
-                          + ", CNP=" + "'" + txtCNP.Text + "'" + " WHERE Enabled=1"
+                   " SET" + " Denumire=" + "'" + txtUnitate.Text.Trim() + "'"
+                          + ", FormaOrg=" + "'" + txtFormaOrg.Text.Trim() + "'"
+                          + ", DenumireScurta=" + "'" + txtDenScurta.Text.Trim() + "'"
+                          + ", Strada=" + "'" + txtStrada.Text.Trim() + "'"
+                          + ", Nr=" + "'" + txtNr.Text.Trim() + "'"
+                          + ", Bloc=" + "'" + txtBloc.Text.Trim() + "'"
+                          + ", Scara=" + "'" + txtScara.Text.Trim() + "'"
+                          + ", Ap=" + "'" + txtAp.Text.Trim() + "'"
+                          + ", Localitate=" + "'" + txtLocalitate.Text.Trim() + "'"
+                          + ", Judet=" + "'" + txtJudet.Text.Trim() + "'"
+                          + ", cp=" + "'" + txtCP.Text.Trim() + "'"
+                          + ", Telefon=" + "'" + txtTelefon.Text.Trim() + "'"
+                          + ", Fax=" + "'" + txtFax.Text.Trim() + "'"
+                          + ", Email=" + "'" + txtEmail.Text.Trim() + "'"
+                          + ", CodFiscal=" + "'" + txtCF.Text.Trim() + "'"
+                          + ", CUI=" + "'" + txtCUI.Text.Trim() + "'"
+                          + ", Banca=" + "'" + txtBanca.Text.Trim() + "'"
+                          + ", IBAN=" + "'" + txtIban.Text.Trim() + "'"
+                          + ", NumeReprezentant=" + "'" + txtNumeRep.Text.Trim() + "'"
+                          + ", PrenumeReprezentant=" + "'" + txtPrenumeRep.Text.Trim() + "'"
+                          + ", Functie=" + "'" + txtFunctie.Text.Trim() + "'"
+                          + ", CNP=" + "'" + txtCNP.Text.Trim() + "'" + " WHERE Enabled=1"
                           );
                
             }
@@ -92,28 +92,28 @@ namespace Certificari.Views
             {
                 mess = DAL.getInstance().InsertUpdate("INSERT INTO " + DAL.Tables.Unitate +
                     "(Denumire, FormaOrg, DenumireScurta, Strada, Nr, Bloc, Scara, Ap, Localitate, Judet, cp, Telefon, Fax, Email, CodFiscal, CUI, Banca, IBAN, NumeReprezentant, PrenumeReprezentant, Functie, CNP) VALUES ("
-                    + "'" + txtUnitate.Text + "'"
-                    + ",'" + txtFormaOrg.Text + "'"
-                    + ",'" + txtDenScurta.Text + "'"
-                    + ",'" + txtStrada.Text + "'"
-                    + ",'" + txtNr.Text + "'"
-                    + ",'" + txtBloc.Text + "'"
-                    + ",'" + txtScara.Text + "'"
-                    + ",'" + txtAp.Text + "'"
-                    + ",'" + txtLocalitate.Text + "'"
-                    + ",'" + txtJudet.Text + "'"
-                    + ",'" + txtCP.Text + "'"
-                    + ",'" + txtTelefon.Text + "'"
-                    + ",'" + txtFax.Text + "'"
-                    + ",'" + txtEmail.Text + "'"
-                    + ",'" + txtCF.Text + "'"
-                    + ",'" + txtCUI.Text + "'"
-                    + ",'" + txtBanca.Text + "'"
-                    + ",'" + txtIban.Text + "'"
-                    + ",'" + txtNumeRep.Text + "'"
-                    + ",'" + txtPrenumeRep.Text + "'"
-                    + ",'" + txtFunctie.Text + "'"
-                    + ",'" + txtCNP.Text + "')"
+                    + "'" + txtUnitate.Text.Trim() + "'"
+                    + ",'" + txtFormaOrg.Text.Trim() + "'"
+                    + ",'" + txtDenScurta.Text.Trim() + "'"
+                    + ",'" + txtStrada.Text.Trim() + "'"
+                    + ",'" + txtNr.Text.Trim() + "'"
+                    + ",'" + txtBloc.Text.Trim() + "'"
+                    + ",'" + txtScara.Text.Trim() + "'"
+                    + ",'" + txtAp.Text.Trim() + "'"
+                    + ",'" + txtLocalitate.Text.Trim() + "'"
+                    + ",'" + txtJudet.Text.Trim() + "'"
+                    + ",'" + txtCP.Text.Trim() + "'"
+                    + ",'" + txtTelefon.Text.Trim() + "'"
+                    + ",'" + txtFax.Text.Trim() + "'"
+                    + ",'" + txtEmail.Text.Trim() + "'"
+                    + ",'" + txtCF.Text.Trim() + "'"
+                    + ",'" + txtCUI.Text.Trim() + "'"
+                    + ",'" + txtBanca.Text.Trim() + "'"
+                    + ",'" + txtIban.Text.Trim() + "'"
+                    + ",'" + txtNumeRep.Text.Trim() + "'"
+                    + ",'" + txtPrenumeRep.Text.Trim() + "'"
+                    + ",'" + txtFunctie.Text.Trim() + "'"
+                    + ",'" + txtCNP.Text.Trim() + "')"
                     );
             }
             if (mess == "Success")
