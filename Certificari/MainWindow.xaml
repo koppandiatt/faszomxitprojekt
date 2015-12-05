@@ -19,13 +19,14 @@
                     <Grid Height="89" VerticalAlignment="Top" Background="#FFE2E0E0">
                         <RadioButton Content="Candidati" HorizontalAlignment="Left" IsChecked="True" Margin="10,10,0,0" VerticalAlignment="Top"/>
                         <RadioButton Content="Programe acreditate" HorizontalAlignment="Left" Margin="84,10,0,0" VerticalAlignment="Top"/>
-                        <Button IsEnabled="True" Content="Adauga" HorizontalAlignment="Left" Margin="10,67,0,-15" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-                        <Button Name="stergeStudents" Content="Sterge" HorizontalAlignment="Left" Margin="90,67,0,-15" VerticalAlignment="Top" Width="75" Click="stergeStudents_Click"/>
+                        <Button IsEnabled="True" Content="Adauga" HorizontalAlignment="Left" Margin="10,67,0,-15" VerticalAlignment="Top" Width="75" Click="CandidateAdauga_Click"/>
+                        <Button Name="stergeStudents" Content="Sterge" HorizontalAlignment="Left" Margin="170,67,0,0" VerticalAlignment="Top" Width="75" Click="stergeStudents_Click"/>
                         <TextBox Name="txtSearch" HorizontalAlignment="Left" Height="23" Padding="2" Margin="54,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="231" KeyUp="txtSearch_KeyUp" TextChanged="txtSearch_TextChanged"/>
                         <Button Name="btnSearch" Content="X" HorizontalAlignment="Left" Margin="285,39,0,0" VerticalAlignment="Top" Width="26" Height="23" Click="btnSearch_Click"/>
                         <Label Content="Cauta:" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Height="23" Width="44"/>
                         <RadioButton Content="Contracte" HorizontalAlignment="Left" Margin="216,10,0,0" VerticalAlignment="Top"/>
                         <RadioButton Content="Contracte Firme" HorizontalAlignment="Left" Margin="291,10,0,0" VerticalAlignment="Top"/>
+                        <Button Name="btnListare" Content="Listare" HorizontalAlignment="Left" Margin="90,67,0,0" VerticalAlignment="Top" Width="75" Click="btnListare_Click"/>
                     </Grid>
                     <DataGrid PreviewMouseRightButtonDown="GridCandidati_PreviewMouseRightButtonDown" Name="GridCandidati" Margin="0,94,0,0" CanUserAddRows="False" AutoGenerateColumns="True">
 

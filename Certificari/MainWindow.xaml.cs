@@ -128,9 +128,6 @@ namespace Certificari
             }
         }
 
-    
-       
-
         private void Sterge_Click(object sender, RoutedEventArgs e)
         {
 
@@ -236,6 +233,12 @@ namespace Certificari
             {
                 GridCandidati.ItemsSource = null;
             }
+        }
+
+        private void btnListare_Click(object sender, RoutedEventArgs e)
+        {
+            Listare listare = new Listare();
+            listare.ShowDialog();
         }
        
     }
