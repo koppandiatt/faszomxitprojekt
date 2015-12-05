@@ -62,7 +62,7 @@ namespace Certificari.Views
             string mess = "";
             if(DAL.getInstance().select("SELECT * FROM " + DAL.Tables.UNITATE).Rows.Count > 0)
             {
-                mess = DAL.getInstance().InsertUpdate("UPDATE " + DAL.Tables.Unitate +
+                mess = DAL.getInstance().InsertUpdate("UPDATE " + DAL.Tables.UNITATE +
                    " SET" + " Denumire=" + "'" + txtUnitate.Text.Trim() + "'"
                           + ", FormaOrg=" + "'" + txtFormaOrg.Text.Trim() + "'"
                           + ", DenumireScurta=" + "'" + txtDenScurta.Text.Trim() + "'"

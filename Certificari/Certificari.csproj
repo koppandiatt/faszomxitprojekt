@@ -49,8 +49,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -72,6 +76,7 @@
     <Compile Include="Behavior\RowToIndexConverter.cs" />
     <Compile Include="Classes\DAL.cs" />
     <Compile Include="Classes\ICommMainUI.cs" />
+    <Compile Include="Classes\Report.cs" />
     <Compile Include="Classes\Tools.cs" />
     <Compile Include="Views\Candidat.xaml.cs">
       <DependentUpon>Candidat.xaml</DependentUpon>
@@ -123,6 +128,40 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\Anexa 1 - Proces verbal.rtf" />
+    <None Include="Resources\Anexa 2 - Catalog participanti extins 10.rtf" />
+    <None Include="Resources\Anexa 2 - Catalog participanti extins 14.rtf" />
+    <None Include="Resources\Anexa 2 - Catalog participanti extins 15.rtf" />
+    <None Include="Resources\Anexa 2 - Catalog participanti extins.rtf" />
+    <None Include="Resources\Anexa 2 - Catalog participanti.rtf" />
+    <None Include="Resources\Anexa 3 - Foaie de notare practic.rtf" />
+    <None Include="Resources\Anexa 3 - Foaie de notare teorie.rtf" />
+    <None Include="Resources\Anexa 3 - Foaie de notare.rtf" />
+    <None Include="Resources\Anexa 4 - Catalog examen.rtf" />
+    <None Include="Resources\Anexa 5 - Tabel nominal practic.rtf" />
+    <None Include="Resources\Anexa 5 - Tabel nominal teorie.rtf" />
+    <None Include="Resources\Anexa 5 - Tabel nominal.rtf" />
+    <None Include="Resources\Borderou certificate.xls" />
+    <None Include="Resources\Borderou.rtf" />
+    <None Include="Resources\Contract FIRME.doc" />
+    <None Include="Resources\Contract.doc" />
+    <None Include="Resources\Diploma absolvire EF 2003.doc" />
+    <None Include="Resources\Diploma calificare EF 2003.doc" />
+    <None Include="Resources\Diploma calificare EF 2007.doc" />
+    <None Include="Resources\Grafic desfasurare sesiune.rtf" />
+    <None Include="Resources\Lista examen.xls" />
+    <None Include="Resources\Registru Certificate Absolvire.xls" />
+    <None Include="Resources\Registru Certificate Calificare.xls" />
+    <None Include="Resources\Registru Certificate.xls" />
+    <None Include="Resources\Registru Contracte.xls" />
+    <None Include="Resources\Registru Matricol.xls" />
+    <None Include="Resources\Situatie incasari.rtf" />
+    <None Include="Resources\situatie politie.xls" />
+    <None Include="Resources\Supliment fata F 2003.doc" />
+    <None Include="Resources\Supliment fata F 2007.doc" />
+    <None Include="Resources\Supliment spate F 2003.doc" />
+    <None Include="Resources\Supliment spate F 2007.doc" />
+    <None Include="Resources\Tabel persoane inscrise.rtf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -146,6 +185,17 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
