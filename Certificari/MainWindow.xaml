@@ -44,7 +44,7 @@
                         
                         <DataGrid.ContextMenu >
                             <ContextMenu Name="menuCandi" ItemsSource="{Binding RelativeSource={RelativeSource Self}}">
-                                <MenuItem Header="Editare"  />
+                                <MenuItem Header="Editare" Click="Editare_Click" />
                                 <MenuItem Header="Detalii" Click="Detalii_Click"  />
                                 <MenuItem Header="Listare documente"  />
                             </ContextMenu>
@@ -64,7 +64,7 @@
                     <Button Margin="135,71,0,0" Content="Adauga" Click="Add_document" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="110" />
                     <Button Name="Sterge" DockPanel.Dock="Left" Content="Sterge" Click="Sterge_Click" Margin="0,71,0,0" Background="#FFBF8D8D" HorizontalAlignment="Left" Width="75" Height="25" VerticalAlignment="Top" ></Button>
                     <Label Name="nomenclatorErrortblock" Content="" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="ExtraBold" VerticalContentAlignment="Center" Margin="250,71,10,0" MinWidth="100" Height="25" VerticalAlignment="Top"></Label>
-                    <DataGrid x:Name="GridDocumentList" ColumnWidth="*" CanUserAddRows="False"  AutoGenerateColumns="True"   Margin="0,101,0,0" >
+                    <DataGrid x:Name="GridDocumentList" ColumnWidth="*" CanUserAddRows="False"  AutoGenerateColumns="False"   Margin="0,101,0,0" >
                         <DataGrid.RowHeaderTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -74,6 +74,10 @@
                                 </Grid>
                             </DataTemplate>
                         </DataGrid.RowHeaderTemplate>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nume" Binding="{Binding Path=Nume}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Path" Binding="{Binding Path=Path}"></DataGridTextColumn>
+                        </DataGrid.Columns>
                     </DataGrid>
                     <Button Content="..." Name="btnPath" HorizontalAlignment="Left" Margin="135,39,0,0" VerticalAlignment="Top" Width="29" Height="27" Click="btnPath_Click"/>
                 </Grid>

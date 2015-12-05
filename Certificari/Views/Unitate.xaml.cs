@@ -24,7 +24,7 @@ namespace Certificari.Views
         public Unitate()
         {
             InitializeComponent();
-            DataTable dt = DAL.getInstance().select("SELECT * FROM " + DAL.Tables.Unitate);
+            DataTable dt = DAL.getInstance().select("SELECT * FROM " + DAL.Tables.UNITATE);
             if(dt.Rows.Count > 0)
             {
                 txtUnitate.Text = dt.Rows[0]["Denumire"].ToString().Trim();
@@ -60,7 +60,7 @@ namespace Certificari.Views
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             string mess = "";
-            if(DAL.getInstance().select("SELECT * FROM " + DAL.Tables.Unitate).Rows.Count > 0)
+            if(DAL.getInstance().select("SELECT * FROM " + DAL.Tables.UNITATE).Rows.Count > 0)
             {
                 mess = DAL.getInstance().InsertUpdate("UPDATE " + DAL.Tables.Unitate +
                    " SET" + " Denumire=" + "'" + txtUnitate.Text.Trim() + "'"
@@ -90,7 +90,7 @@ namespace Certificari.Views
             }
             else
             {
-                mess = DAL.getInstance().InsertUpdate("INSERT INTO " + DAL.Tables.Unitate +
+                mess = DAL.getInstance().InsertUpdate("INSERT INTO " + DAL.Tables.UNITATE +
                     "(Denumire, FormaOrg, DenumireScurta, Strada, Nr, Bloc, Scara, Ap, Localitate, Judet, cp, Telefon, Fax, Email, CodFiscal, CUI, Banca, IBAN, NumeReprezentant, PrenumeReprezentant, Functie, CNP) VALUES ("
                     + "'" + txtUnitate.Text.Trim() + "'"
                     + ",'" + txtFormaOrg.Text.Trim() + "'"

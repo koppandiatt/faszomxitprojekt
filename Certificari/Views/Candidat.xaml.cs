@@ -26,18 +26,29 @@ namespace Certificari.Views
         private bool _isDetali = false;
         private bool _isEnabled = true;
         private string _isBtnVisibility = "Visible";
-        
 
+        private const string SALVEAZA = "Salvezaza";
+        private const string ADAUGA = "Adauga";
 
+        private int id = -1;
 
-        public Candidat(bool isDet,DataRow detRow = null)
+        private DataTable candidatTable = null;
+
+        private ICommMainUI contextMain;
+
+        public Candidat(bool isDet,DataRow detRow = null,ICommMainUI contextMain = null)
         {
             InitializeComponent();
             this.DataContext = this;
             isDetalii = isDet;
             isEnabled = !isDet;
-            if (isDetalii && detRow != null)
+            btnAdd.Content = ADAUGA;
+            this.contextMain = contextMain;
+            id = -1;
+            if (detRow != null)
             {
+                btnAdd.Content = SALVEAZA;
+                id =(int) detRow["Id"];
                 loadDatas(detRow);
             }
         }
@@ -141,32 +152,66 @@ namespace Certificari.Views
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            string query = "INSERT INTO Candidat (" +
-                "NrMatricol, Nume, Prenume, Tata, Mama, CNP, DataNasterii, LoculNasterii, Strada, Nr, Bloc," +
-                "Scara, Ap, Localitate, Judet, Cp, Telefon, Studii, Profesia, LocMunca) VALUES ('" +
-                txtNumar.Text + "','" +
-                txtNume.Text + "','" +
-                txtPrenume.Text + "','" +
-                txtTata.Text + "','" +
-                txtMama.Text + "','" +
-                txtCNP.Text + "','" +
-                txtDataNasterii.SelectedDate.Value.ToShortDateString() +"','" +
-                txtLoculN.Text + "','" +
-                txtStrada.Text + "','" +
-                txtNr.Text + "','" +
-                txtBloc.Text + "','" +
-                txtScara.Text + "','" +
-                txtAp.Text + "','" +
-                txtLocalitatea.Text + "','" +
-                txtJudet.Text + "','" +
-                txtCP.Text + "','" +
-                txtTelefon.Text + "','" +
-                txtStudii.Text + "','" +
-                txtProfesia.Text + "','" +
-                txtLocMunca.Text + "')";
+            string query = null;
+            if (id < 0)
+            {
+                  query = "INSERT INTO Candidat (" +
+                  "NrMatricol, Nume, Prenume, Tata, Mama, CNP, DataNasterii, LoculNasterii, Strada, Nr, Bloc," +
+                  "Scara, Ap, Localitate, Judet, Cp, Telefon, Studii, Profesia, LocMunca) VALUES ('" +
+                  txtNumar.Text + "','" +
+                  txtNume.Text + "','" +
+                  txtPrenume.Text + "','" +
+                  txtTata.Text + "','" +
+                  txtMama.Text + "','" +
+                  txtCNP.Text + "','" +
+                  txtDataNasterii.SelectedDate.Value.ToShortDateString() + "','" +
+                  txtLoculN.Text + "','" +
+                  txtStrada.Text + "','" +
+                  txtNr.Text + "','" +
+                  txtBloc.Text + "','" +
+                  txtScara.Text + "','" +
+                  txtAp.Text + "','" +
+                  txtLocalitatea.Text + "','" +
+                  txtJudet.Text + "','" +
+                  txtCP.Text + "','" +
+                  txtTelefon.Text + "','" +
+                  txtStudii.Text + "','" +
+                  txtProfesia.Text + "','" +
+                  txtLocMunca.Text + "')";
+
+            }
+            else
+            {
+                query = " UPDATE " + DAL.Tables.CANDIDAT + " SET " +
+                         "NrMatricol = '" + txtNumar.Text +
+                         "', Nume = '" + txtNume.Text +
+                         "', Prenume = '" + txtPrenume.Text +
+                         "', Tata = '" + txtTata.Text +
+                         "', Mama = '" + txtMama.Text +
+                         "', CNP = '" + txtCNP.Text +
+                         "', DataNasterii = '" + txtDataNasterii.SelectedDate.Value.ToShortDateString() +
+                         "', LoculNasterii = '" + txtLoculN.Text +
+                         "', Strada = '" + txtStrada.Text +
+                         "', Nr = '" + txtNr.Text +
+                         "', Bloc = '" + txtBloc.Text +
+                         "', Scara = '" + txtScara.Text +
+                         "', Ap = '" + txtAp.Text +
+                         "', Localitate = '" + txtLocalitatea.Text +
+                         "', Judet = '" + txtJudet.Text +
+                         "', CP = '" + txtCP.Text +
+                         "', Telefon = '" + txtTelefon.Text +
+                         "', Studii = '" + txtStudii.Text +
+                         "', Profesia = '" + txtProfesia.Text +
+                         "', LocMunca = '" + txtLocMunca.Text + "' WHERE " +
+                         "Id = " + id;
+         
+            }
+           
 
             if (DAL.getInstance().InsertUpdate(query) == "Success")
             {
+                if (contextMain == null) return;
+                contextMain.updateCandidats();
                 this.Close();
             }
             else

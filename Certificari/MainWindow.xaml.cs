@@ -23,24 +23,17 @@ namespace Certificari
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, ICommMainUI
     {
 
         private DataTable _DTdocuments;
         private DataTable _DTcandidats;
 
         
-
         public MainWindow()
         {
             InitializeComponent();
-            /*string mess = DAL.getInstance().iud("INSERT INTO Document (Nume,Path) VALUES ('Foaie Matricola', 'D:/Documente/Scoala/')");
-            MessageBox.Show(mess);
-            DataTable dt = DAL.getInstance().select("SELECT * FROM Document");
-            MessageBox.Show(dt.Rows.Count.ToString());*/
-            //RefreshCandidati();
            
-            
         }
 
         private void MenuUnitate_Click(object sender, RoutedEventArgs e)
@@ -49,9 +42,9 @@ namespace Certificari
             unitate.ShowDialog();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void CandidateAdauga_Click(object sender, RoutedEventArgs e)
         {
-            Candidat candidat = new Candidat(false);
+            Candidat candidat = new Candidat(false,null,this);
             candidat.ShowDialog();
            // RefreshCandidati();
         }
@@ -65,36 +58,37 @@ namespace Certificari
           
             if (sender is TabControl && tabNomenclator.IsSelected)
             {
-                Console.WriteLine("sadsad");
             nomenclatorErrortblock.Content = "";
-            ///TODO fetch datas from DB
-
-            _DTdocuments = new DataTable();
-            _DTdocuments.Columns.Add("Name", typeof(string));
-            _DTdocuments.Columns.Add("Path", typeof(string));
-            _DTdocuments.Rows.Add("Alma", "ASdasdsada");
-            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
-            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
-            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
-            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
-            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
-            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
-            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
-            _DTdocuments.Rows.Add("sadasd", "ASdasdsada");
-            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
-
-            _DTdocuments.Rows.Add("kutya", "ASdasdsada");
-            GridDocumentList.ItemsSource = _DTdocuments.DefaultView;
-            
+                updateDocumentList();
 
            }
 
             if (sender is TabControl && tabOperati.IsSelected)
             {
-               _DTcandidats = DAL.getInstance().select("Select * FROM " + DAL.Tables.Candidat);
-               this.GridCandidati.ItemsSource = _DTcandidats.DefaultView;
+                updateCandidats();
+            }
+            
+        }
+
+
+        public void updateCandidats()
+        {
+            try
+            {
+                _DTcandidats = DAL.getInstance().select(DAL.baseQuerys.SCANDIDAT);
+                if (_DTcandidats != null) this.GridCandidati.ItemsSource = _DTcandidats.DefaultView;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+           }
+
             }
 
+        public void updateDocumentList()
+        {
+            _DTdocuments = DAL.getInstance().select(DAL.baseQuerys.SDOCUMENT);
+            if (_DTdocuments != null) this.GridDocumentList.ItemsSource = _DTdocuments.DefaultView;
         }
 
         private void Add_document(object sender, RoutedEventArgs e)
@@ -113,8 +107,19 @@ namespace Certificari
                 {
                     throw new Exception("Empty document Name!");
                 }
-                _DTdocuments.Rows.Add(docName, docSrc);
-                //TODO Update to database
+              
+              
+                DAL.getInstance().InsertUpdate("INSERT Document(Nume,Path) VALUES( '" +
+                                                docName + "' , '" + docSrc + "' ) ");
+
+                
+
+              
+                Console.WriteLine(" IDDDDDDDDDDDD " + DAL.getInstance().getInsertRowId());
+
+                updateDocumentList();
+
+
 
             }
             catch (Exception ex)
@@ -139,10 +144,10 @@ namespace Certificari
                 }
                 foreach (DataRowView row in deleteRows)
                 {
+                    DAL.getInstance().Delete(DAL.Tables.DOCUMENT,(int) row.Row["Id"]);
                     _DTdocuments.Rows.Remove(row.Row);
                 }
             
-
         }
 
         private void stergeStudents_Click(object sender, RoutedEventArgs e)
@@ -152,10 +157,12 @@ namespace Certificari
             DataRowView[] deleteRows = new DataRowView[GridCandidati.SelectedItems.Count];
             for (int i = 0; i < GridCandidati.SelectedItems.Count; i++)
             {
+               
                 deleteRows[i] = (DataRowView)GridCandidati.SelectedItems[i];
             }
             foreach (DataRowView row in deleteRows)
             {
+                DAL.getInstance().Delete(DAL.Tables.CANDIDAT, (int)row.Row["Id"]);
                 _DTcandidats.Rows.Remove(row.Row);
             }
         }
@@ -187,11 +194,18 @@ namespace Certificari
         }
 
 
+        private void Editare_Click(object sender, RoutedEventArgs e)
+        {
+            DataRow row = getSelectedRow();
+            Candidat candidat = new Candidat(false, row,this);
+            candidat.ShowDialog();
+        }
+
         private DataRow getSelectedRow()
         {
             return ((DataRowView)GridCandidati.SelectedItem).Row;
         }
-
+       
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             txtSearch.Text = "";
