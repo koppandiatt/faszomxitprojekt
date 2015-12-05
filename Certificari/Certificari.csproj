@@ -71,6 +71,7 @@
     <Compile Include="Behavior\OneReturnsTrueConverter.cs" />
     <Compile Include="Behavior\RowToIndexConverter.cs" />
     <Compile Include="Classes\DAL.cs" />
+    <Compile Include="Classes\ICommMainUI.cs" />
     <Compile Include="Classes\Tools.cs" />
     <Compile Include="Views\Candidat.xaml.cs">
       <DependentUpon>Candidat.xaml</DependentUpon>
