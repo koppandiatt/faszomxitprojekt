@@ -1,0 +1,22 @@
+﻿<Window x:Class="Certificari.Views.Listare"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Listare" Height="700" Width="414" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        >
+       
+    <Grid>
+        <ComboBox Name="comboDocument" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="373" SelectionChanged="comboDocument_SelectionChanged"/>
+        <Label Content="Alege document:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="165"/>
+        <Label Content="Presedinte:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Width="123"/>
+        <TextBox Name="txtPresedinte" HorizontalAlignment="Left" Height="23" Margin="10,94,0,0" TextWrapping="Wrap" Text="" Padding="2" VerticalAlignment="Top" Width="373"/>
+        <Label Content="Membru 1" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Width="82"/>
+        <Label Content="Membru 2" HorizontalAlignment="Left" Margin="199,122,0,0" VerticalAlignment="Top" Width="82"/>
+        <TextBox Name="txtMembru1" HorizontalAlignment="Left" Height="23" Margin="10,148,0,0" TextWrapping="Wrap" Text="" Padding="2" VerticalAlignment="Top" Width="184"/>
+        <TextBox Name="txtMembru2" HorizontalAlignment="Left" Height="23" Margin="199,148,0,0" TextWrapping="Wrap" Text="" Padding="2" VerticalAlignment="Top" Width="184"/>       
+        <Button Name="btnSaveDocPath" Content="..." HorizontalAlignment="Left" Height="23" Margin="10,176,0,0" VerticalAlignment="Top" Width="30" Click="btnSaveDocPath_Click" />
+        <Label Name="lblDocPath" Content="" HorizontalAlignment="Left" Height="23" Margin="45,176,0,0" VerticalAlignment="Top" Width="338"/>
+        <DocumentViewer Name="documentPreview" Margin="0,204,0,41"></DocumentViewer>
+        <Button Content="Listare" HorizontalAlignment="Left" Margin="159,635,0,0" VerticalAlignment="Top" Width="75" Click="Listare_Click" />
+        
+    </Grid>
+</Window>

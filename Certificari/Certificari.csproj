@@ -49,12 +49,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Access, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -75,11 +83,15 @@
     <Compile Include="Behavior\OneReturnsTrueConverter.cs" />
     <Compile Include="Behavior\RowToIndexConverter.cs" />
     <Compile Include="Classes\DAL.cs" />
+    <Compile Include="Classes\DocumentPrevier.cs" />
     <Compile Include="Classes\ICommMainUI.cs" />
     <Compile Include="Classes\Report.cs" />
     <Compile Include="Classes\Tools.cs" />
     <Compile Include="Views\Candidat.xaml.cs">
       <DependentUpon>Candidat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Listare.xaml.cs">
+      <DependentUpon>Listare.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Unitate.xaml.cs">
       <DependentUpon>Unitate.xaml</DependentUpon>
@@ -97,6 +109,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Candidat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Listare.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
