@@ -7,26 +7,26 @@
         Title="Certificari" 
         Height="500" Width="725"
         MinHeight="400" MinWidth="600" Icon="Assets/logo.png" WindowStartupLocation="CenterScreen">
-    
+
     <Window.Resources>
         <local:OneReturnsTrueConverter x:Key="OneReturnsTrueConverter"/>
     </Window.Resources>
-    
+
     <Grid>
-        <TabControl Margin="0,25,0,10" IsEnabled="True" SelectionChanged="TabControl_SelectionChanged">
-            <TabItem Name="tabOperati" Header="Operatii">
+        <TabControl Margin="0,20,0,0" IsEnabled="True" SelectionChanged="TabControl_SelectionChanged"  Style="{DynamicResource TabControlStyle}">
+            <TabItem Name="tabOperati" Header="Operatii" Style="{DynamicResource TabItemStyle}">
                 <Grid Background="#FFE5E5E5">
                     <Grid Height="89" VerticalAlignment="Top" Background="#FFE2E0E0">
                         <RadioButton Content="Candidati" HorizontalAlignment="Left" IsChecked="True" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                        <RadioButton Content="Programe acreditate" HorizontalAlignment="Left" Margin="84,10,0,0" VerticalAlignment="Top"/>
+                        <RadioButton Content="Programe acreditate" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top"/>
                         <Button IsEnabled="True" Content="Adauga" HorizontalAlignment="Left" Margin="10,67,0,-15" VerticalAlignment="Top" Width="75" Click="CandidateAdauga_Click"/>
-                        <Button Name="stergeStudents" Content="Sterge" HorizontalAlignment="Left" Margin="170,67,0,0" VerticalAlignment="Top" Width="75" Click="stergeStudents_Click"/>
+                        <Button Style="{DynamicResource RedButtonStyle}" Name="stergeStudents" Content="Sterge" HorizontalAlignment="Left" Margin="170,67,0,0" VerticalAlignment="Top" Width="75" Click="stergeStudents_Click"/>
                         <TextBox Name="txtSearch" HorizontalAlignment="Left" Height="23" Padding="2" Margin="54,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="231" KeyUp="txtSearch_KeyUp" TextChanged="txtSearch_TextChanged"/>
-                        <Button Name="btnSearch" Content="X" HorizontalAlignment="Left" Margin="285,39,0,0" VerticalAlignment="Top" Width="26" Height="23" Click="btnSearch_Click"/>
-                        <Label Content="Cauta:" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Height="23" Width="44"/>
-                        <RadioButton Content="Contracte" HorizontalAlignment="Left" Margin="216,10,0,0" VerticalAlignment="Top"/>
-                        <RadioButton Content="Contracte Firme" HorizontalAlignment="Left" Margin="291,10,0,0" VerticalAlignment="Top"/>
-                        <Button Name="btnListare" Content="Listare" HorizontalAlignment="Left" Margin="90,67,0,0" VerticalAlignment="Top" Width="75" Click="btnListare_Click"/>
+                        <Button Name="btnSearch" Style="{DynamicResource RefreshButtonStyle}" Content="X" HorizontalAlignment="Left" Margin="285,39,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnSearch_Click"/>
+                        <Label Content="Cauta:" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Height="28" Width="44"/>
+                        <RadioButton Content="Contracte" HorizontalAlignment="Left" Margin="253,10,0,0" VerticalAlignment="Top"/>
+                        <RadioButton Content="Contracte Firme" HorizontalAlignment="Left" Margin="349,10,0,0" VerticalAlignment="Top"/>
+                        <Button Name="btnListare" Style="{DynamicResource NormalButtonStyle}" Content="Listare" HorizontalAlignment="Left" Margin="90,67,0,0" VerticalAlignment="Top" Width="75" Click="btnListare_Click"/>
                     </Grid>
                     <DataGrid PreviewMouseRightButtonDown="GridCandidati_PreviewMouseRightButtonDown" Name="GridCandidati" Margin="0,94,0,0" CanUserAddRows="False" AutoGenerateColumns="True">
 
@@ -40,9 +40,9 @@
                                 </Grid>
                             </DataTemplate>
                         </DataGrid.RowHeaderTemplate>
-                        
-                        
-                        
+
+
+
                         <DataGrid.ContextMenu >
                             <ContextMenu Name="menuCandi" ItemsSource="{Binding RelativeSource={RelativeSource Self}}">
                                 <MenuItem Header="Editare" Click="Editare_Click" />
@@ -53,7 +53,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Name="tabNomenclator" Header="Nomenclator">
+            <TabItem Name="tabNomenclator" Header="Nomenclator" Style="{DynamicResource TabItemStyle}">
 
 
 
@@ -63,7 +63,7 @@
                     <Label  Content="Denumire document" Margin="0,7,0,0" HorizontalAlignment="Left" Width="130" Height="27" VerticalAlignment="Top"></Label>
                     <Label Name="docSrctxtbox" Content="" VerticalContentAlignment="Center" Margin="169,39,10,0" MinWidth="100" Height="27" VerticalAlignment="Top"></Label>
                     <Button Margin="135,71,0,0" Content="Adauga" Click="Add_document" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="110" />
-                    <Button Name="Sterge" DockPanel.Dock="Left" Content="Sterge" Click="Sterge_Click" Margin="0,71,0,0" Background="#FFBF8D8D" HorizontalAlignment="Left" Width="75" Height="25" VerticalAlignment="Top" ></Button>
+                    <Button Name="Sterge" Style="{DynamicResource RedButtonStyle}" DockPanel.Dock="Left" Content="Sterge" Click="Sterge_Click" Margin="0,71,0,0" Background="#FFBF8D8D" HorizontalAlignment="Left" Width="75" Height="25" VerticalAlignment="Top" ></Button>
                     <Label Name="nomenclatorErrortblock" Content="" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="ExtraBold" VerticalContentAlignment="Center" Margin="250,71,10,0" MinWidth="100" Height="25" VerticalAlignment="Top"></Label>
                     <DataGrid x:Name="GridDocumentList" ColumnWidth="*" CanUserAddRows="False"  AutoGenerateColumns="False"   Margin="0,101,0,0" >
                         <DataGrid.RowHeaderTemplate>
