@@ -58,7 +58,7 @@ namespace Certificari
           
             if (sender is TabControl && tabNomenclator.IsSelected)
             {
-            nomenclatorErrortblock.Content = "";
+                nomenclatorErrortblock.Content = "";
                 updateDocumentList();
 
            }
@@ -167,6 +167,7 @@ namespace Certificari
         private void btnPath_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Word documents(*.doc;*.docx)|*.doc;*.docx"; 
             if(ofd.ShowDialog() == true)
             {
                 this.docSrctxtbox.Content = Path.GetFullPath(ofd.FileName);
@@ -196,6 +197,23 @@ namespace Certificari
             DataRow row = getSelectedRow();
             Candidat candidat = new Candidat(false, row,this);
             candidat.ShowDialog();
+        }
+
+        private void btnListare_Click(object sender, RoutedEventArgs e)
+        {
+            if (GridCandidati.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Error occured: no selected candidati!");
+                return;
+            }
+             DataRowView[] candidatsRows = new DataRowView[GridCandidati.SelectedItems.Count];
+             for (int i = 0; i < GridCandidati.SelectedItems.Count; i++)
+             {
+
+                 candidatsRows[i] = (DataRowView)GridCandidati.SelectedItems[i];
+             }
+            Listare listare = new Listare(candidatsRows);
+            listare.ShowDialog();
         }
 
         private DataRow getSelectedRow()
@@ -235,11 +253,7 @@ namespace Certificari
             }
         }
 
-        private void btnListare_Click(object sender, RoutedEventArgs e)
-        {
-            Listare listare = new Listare();
-            listare.ShowDialog();
-        }
+    
        
     }
 }

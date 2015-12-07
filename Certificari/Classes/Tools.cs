@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using Microsoft.Office.Interop.Word;
 
 namespace Certificari.Classes
 {
@@ -54,4 +57,7 @@ namespace Certificari.Classes
             return foundChild;
         }
     }
+
+ 
+
 }

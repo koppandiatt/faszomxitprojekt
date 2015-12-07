@@ -139,8 +139,6 @@ namespace Certificari.Classes
         {
             public const string SCANDIDAT = "SELECT * FROM Candidat WHERE Status = 1";
             public const string SDOCUMENT = "SELECT * FROM Document WHERE Status = 1";
-     
-
         }
 
     }
