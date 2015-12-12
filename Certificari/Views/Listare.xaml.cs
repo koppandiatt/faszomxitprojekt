@@ -111,10 +111,9 @@ namespace Certificari.Views
             }
         }
 
-        private void Listare_Click(object sender, RoutedEventArgs e)
+        private void ListareToate_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+           
                 if (currentDoc.Path == null || currentDoc.Name == null)
                 {
                     MessageBox.Show("No one document selected!");
@@ -129,14 +128,29 @@ namespace Certificari.Views
                 string presedinte = txtPresedinte.Text;
                 string membru1 = txtMembru1.Text;
                 string membru2 = txtMembru2.Text;
-            
-                Report.CreateWordDocument(currentDoc.Path, _destPath, currentDoc.Name, _candidats, presedinte, membru1, membru2);
-            }
-            catch (Exception ex)
+
+                Report.CreateWordsDocuments(currentDoc.Path, _destPath, currentDoc.Name, _candidats, presedinte, membru1, membru2);
+        
+        }
+
+        private void ListareIntrun_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentDoc.Path == null || currentDoc.Name == null)
             {
-                MessageBox.Show("Error occured at generating filled docs");  
+                MessageBox.Show("No one document selected!");
+                return;
             }
-            
+            if (_destPath == null)
+            {
+                MessageBox.Show("No doc destination selected!");
+                return;
+            }
+
+            string presedinte = txtPresedinte.Text;
+            string membru1 = txtMembru1.Text;
+            string membru2 = txtMembru2.Text;
+
+            Report.CreateWordsDocumentToOne(currentDoc.Path, _destPath, currentDoc.Name, _candidats, presedinte, membru1, membru2);
         }
 
         private void btnSaveDocPath_Click(object sender, RoutedEventArgs e)

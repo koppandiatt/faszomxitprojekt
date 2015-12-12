@@ -16,7 +16,8 @@
         <Button Name="btnSaveDocPath" Content="..." HorizontalAlignment="Left" Height="23" Margin="10,176,0,0" VerticalAlignment="Top" Width="30" Click="btnSaveDocPath_Click" />
         <Label Name="lblDocPath" Content="" HorizontalAlignment="Left" Height="23" Margin="45,176,0,0" VerticalAlignment="Top" Width="338"/>
         <DocumentViewer Name="documentPreview" Margin="0,204,0,41"></DocumentViewer>
-        <Button Content="Listare" HorizontalAlignment="Left" Margin="159,635,0,0" VerticalAlignment="Top" Width="75" Click="Listare_Click" />
-        
+        <Button Content="ListareToate" HorizontalAlignment="Left" Margin="119,641,0,0" VerticalAlignment="Top" Width="75" Click="ListareToate_Click" />
+        <Button Content="ListareIntrun" HorizontalAlignment="Left" Margin="206,641,0,0" VerticalAlignment="Top" Width="75" Click="ListareIntrun_Click" />
+
     </Grid>
 </Window>

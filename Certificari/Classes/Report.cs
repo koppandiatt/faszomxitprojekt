@@ -51,8 +51,130 @@ namespace Certificari.Classes
                         ref matchControl);
         }
 
+        public static bool CreateWordsDocuments(object docPath, string savaAs, string docName, DataRowView[] candidats, string presedinte, string membru1, string membru2)
+        {
+            int candiLength = candidats.Length;
+            Console.WriteLine("LENGTH" + candiLength);
+
+            object missing = Missing.Value;
+            //      Word.Document[] adocs = new Word.Document[candidats.Length];
+
+            Word.Document aDoc = null;
+            Word.Application wordApp = null;
+
+
+            try{
+                for (int i = 0; i < candiLength; ++i)
+                {
+
+                    aDoc = new Word.Document();
+                    wordApp = new Word.Application();
+                    DataRow candidat = candidats[i].Row;
+                    List<int> processesbeforegen = getRunningProcesses();
+                    string savePath =(string) savaAs + docName + " " + candidat["Nume"] + "_" + candidat["Prenume"] ;
+                 
+
+
+                    if (File.Exists((string)docPath))
+                    {
+                        Console.WriteLine("Fajlnal vagyok");
+                   
+                        object readOnly = false; //default
+                        object isVisible = false;
+
+                        wordApp.Visible = false;
+
+                        aDoc = wordApp.Documents.Open(ref docPath, ref missing, ref readOnly,
+                                                    ref missing, ref missing, ref missing,
+                                                    ref missing, ref missing, ref missing,
+                                                    ref missing, ref missing, ref missing,
+                                                    ref missing, ref missing, ref missing, ref missing);
+
+                        aDoc.Activate();
+
+                        Console.WriteLine("megnyitva");
+
+                        //Find and replace:
+                        FindAndReplace(wordApp, "{NrMatricol}", candidat["NrMatricol"]);
+                        FindAndReplace(wordApp, "{Nume}", candidat["Nume"]);
+                        FindAndReplace(wordApp, "{Prenume}", candidat["Prenume"]);
+                        FindAndReplace(wordApp, "{Tata}", candidat["Tata"]);
+                        FindAndReplace(wordApp, "{Mama}", candidat["Mama"]);
+                        FindAndReplace(wordApp, "{CNP>", candidat["CNP"]);
+                        FindAndReplace(wordApp, "{DataNasterii}", candidat["DataNasterii"]);
+                        FindAndReplace(wordApp, "{LoculNasterii}", candidat["LoculNasterii"]);
+                        FindAndReplace(wordApp, "{Strada}", candidat["Strada"]);
+                        FindAndReplace(wordApp, "{Nr}", candidat["Nr"]);
+                        FindAndReplace(wordApp, "{Bloc}", candidat["Bloc"]);
+                        FindAndReplace(wordApp, "{Scara}", candidat["Scara"]);
+                        FindAndReplace(wordApp, "{Ap}", candidat["Ap"]);
+                        FindAndReplace(wordApp, "{Localitate}", candidat["Localitate"]);
+                        FindAndReplace(wordApp, "{Judet}", candidat["Judet"]);
+                        FindAndReplace(wordApp, "{Cp}", candidat["Cp"]);
+                        FindAndReplace(wordApp, "{Telefon}", candidat["Telefon"]);
+                        FindAndReplace(wordApp, "{Studii}", candidat["Studii"]);
+                        FindAndReplace(wordApp, "{Profesia}", candidat["Profesia"]);
+                        FindAndReplace(wordApp, "{LocMunca}", candidat["LocMunca"]);
+                        FindAndReplace(wordApp, "{Presedinte}", presedinte);
+                        FindAndReplace(wordApp, "{Membru1}", membru1);
+                        FindAndReplace(wordApp, "{Membru2}", membru2);
+
+
+                        Console.WriteLine("cserelgetes");
+
+                        object saveFullPath = savePath;
+
+                        aDoc.SaveAs2(ref saveFullPath, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing);
+
+                        //Close Document:
+
+                        aDoc.Close(ref missing, ref missing, ref missing);
+                        wordApp.Quit(false);
+
+                        Marshal.FinalReleaseComObject(wordApp);
+                      
+                        aDoc = null;
+                        wordApp = null;
+                        List<int> processesaftergen = getRunningProcesses();
+                        Console.WriteLine("COUNT > " + processesbeforegen.Count + "  " + processesaftergen.Count);
+                        killProcesses(processesbeforegen, processesaftergen);
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("file dose not exist.");
+                        return false;
+                    }
+                }
+
+
+ 
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Error occured at Report!");
+                return false;
+            }
+            finally
+            {
+                if (aDoc != null) aDoc.Close(ref missing, ref missing, ref missing);
+                if (wordApp != null)
+                {
+                    wordApp.Quit(ref missing, ref missing, ref missing);
+                    Marshal.FinalReleaseComObject(wordApp);
+                }
+
+            }
+
+            return true;
+
+        }
+
     
-        public static void CreateWordDocument(object docPath, string savaAs, string docName,DataRowView[] candidats,string presedinte,string membru1, string membru2)
+        public static bool CreateWordsDocumentToOne(object docPath, string savaAs, string docName,DataRowView[] candidats,string presedinte,string membru1, string membru2)
         {
 
            int candiLength = candidats.Length;
@@ -60,92 +182,205 @@ namespace Certificari.Classes
          
            object missing = Missing.Value;
      //      Word.Document[] adocs = new Word.Document[candidats.Length];
+   
+
+           string output = savaAs + docName + "-" + "candidats.docx";
 
 
-           for (int i = 0; i < candiLength; ++i)
+           Application createEmptyDocApp = null;
+           Word.Document createEmptyDoc = null;
+
+           Word._Application wordAppForOutput = null;
+           Word._Document wordDocument = null;
+
+           Word.Document aDoc = null;
+           Word.Application wordApp = null;
+
+           try
            {
+               if (File.Exists(output))
+                   File.Delete(output);
 
-               Word.Document aDoc = new Word.Document();
-               Word.Application wordApp = new Word.Application();
-                DataRow candidat = candidats[i].Row;
-                List<int> processesbeforegen = getRunningProcesses();
-                string savePath =(string) savaAs + docName + " " + candidat["Nume"] + "_" + candidat["Prenume"] ;
+             
+               if (!File.Exists(output))
+               {
+                   createEmptyDocApp = new Application();
+                   createEmptyDoc = createEmptyDocApp.Documents.Add();
 
-              
+                   createEmptyDocApp.ActiveDocument.SaveAs(output, ref missing, ref missing,
+                                                                          ref missing, ref missing, ref missing, ref missing,
+                                                                          ref missing, ref missing, ref missing, ref missing);
+                   createEmptyDoc.Close();
+                   if (createEmptyDocApp != null)
+                   {
+                       createEmptyDocApp.Quit();
+                       Marshal.FinalReleaseComObject(createEmptyDocApp);
+                   }
 
-                if (File.Exists((string)docPath))
-                {
-                    Console.WriteLine("Fajlnal vagyok");
-                    DateTime today = DateTime.Now;
+                   createEmptyDoc = null;
+                   createEmptyDocApp = null;
 
-                    object readOnly = false; //default
-                    object isVisible = false;
+               }
+               else
+               {
+                   return false;
+               }
 
-                    wordApp.Visible = false;
+               object pageBreak = Word.WdBreakType.wdPageBreak;
+               wordAppForOutput = new Word.Application();
 
-                    aDoc = wordApp.Documents.Open(ref docPath, ref missing, ref readOnly,
-                                                ref missing, ref missing, ref missing,
-                                                ref missing, ref missing, ref missing,
-                                                ref missing, ref missing, ref missing,
-                                                ref missing, ref missing, ref missing, ref missing);
+               wordAppForOutput.Visible = false;
 
-                    aDoc.Activate();
+               wordDocument = wordAppForOutput.Documents.Open(
+                                             output
+                                             , false, false, ref missing,
+                                                        ref missing, ref missing, ref missing, ref missing,
+                                                        ref missing, ref missing, ref missing, true,
+                                                        ref missing, ref missing, ref missing, ref missing);
 
-                    Console.WriteLine("megnyitva");
+               wordDocument.Activate();
 
-                    //Find and replace:
-                    FindAndReplace(wordApp, "{NrMatricol}", candidat["NrMatricol"]);
-                    FindAndReplace(wordApp, "{Nume}", candidat["Nume"]);
-                    FindAndReplace(wordApp, "{Prenume}", candidat["Prenume"]);
-                    FindAndReplace(wordApp, "{Tata}", candidat["Tata"]);
-                    FindAndReplace(wordApp, "{Mama}", candidat["Mama"]);
-                    FindAndReplace(wordApp, "{CNP>", candidat["CNP"]);
-                    FindAndReplace(wordApp, "{DataNasterii}", candidat["DataNasterii"]);
-                    FindAndReplace(wordApp, "{LoculNasterii}", candidat["LoculNasterii"]);
-                    FindAndReplace(wordApp, "{Strada}", candidat["Strada"]);
-                    FindAndReplace(wordApp, "{Nr}", candidat["Nr"]);
-                    FindAndReplace(wordApp, "{Bloc}", candidat["Bloc"]);
-                    FindAndReplace(wordApp, "{Scara}", candidat["Scara"]);
-                    FindAndReplace(wordApp, "{Ap}", candidat["Ap"]);
-                    FindAndReplace(wordApp, "{Localitate}", candidat["Localitate"]);
-                    FindAndReplace(wordApp, "{Judet}", candidat["Judet"]);
-                    FindAndReplace(wordApp, "{Cp}", candidat["Cp"]);
-                    FindAndReplace(wordApp, "{Telefon}", candidat["Telefon"]);
-                    FindAndReplace(wordApp, "{Studii}", candidat["Studii"]);
-                    FindAndReplace(wordApp, "{Profesia}", candidat["Profesia"]);
-                    FindAndReplace(wordApp, "{LocMunca}", candidat["LocMunca"]);
-                    FindAndReplace(wordApp, "{Presedinte}", presedinte);
-                    FindAndReplace(wordApp, "{Membru1}", membru1);
-                    FindAndReplace(wordApp, "{Membru2}", membru2);
+               
+
+               for (int i = 0; i < candiLength; ++i)
+               {
+
+                   aDoc = new Word.Document();
+                   wordApp = new Word.Application();
+                   DataRow candidat = candidats[i].Row;
+                   List<int> processesbeforegen = getRunningProcesses();
+                   // string savePath =(string) savaAs + docName + " " + candidat["Nume"] + "_" + candidat["Prenume"] ;
+                   string savePath = savaAs + "tempDoc";
 
 
-                    Console.WriteLine("cserelgetes");
+                   if (File.Exists((string)docPath))
+                   {
+                       Console.WriteLine("Fajlnal vagyok");
+               
+                       object readOnly = false; //default
+                       object isVisible = false;
 
-                    object saveFullPath = savePath;
+                       wordApp.Visible = false;
 
-                    aDoc.SaveAs2(ref saveFullPath, ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing);
+                       aDoc = wordApp.Documents.Open(ref docPath, ref missing, ref readOnly,
+                                                   ref missing, ref missing, ref missing,
+                                                   ref missing, ref missing, ref missing,
+                                                   ref missing, ref missing, ref missing,
+                                                   ref missing, ref missing, ref missing, ref missing);
 
-                    //Close Document:
+                       aDoc.Activate();
 
-                    aDoc.Close(ref missing, ref missing, ref missing);
-                    wordApp.Quit(false);
+                       Console.WriteLine("megnyitva");
 
-                  
+                       //Find and replace:
+                       FindAndReplace(wordApp, "{NrMatricol}", candidat["NrMatricol"]);
+                       FindAndReplace(wordApp, "{Nume}", candidat["Nume"]);
+                       FindAndReplace(wordApp, "{Prenume}", candidat["Prenume"]);
+                       FindAndReplace(wordApp, "{Tata}", candidat["Tata"]);
+                       FindAndReplace(wordApp, "{Mama}", candidat["Mama"]);
+                       FindAndReplace(wordApp, "{CNP>", candidat["CNP"]);
+                       FindAndReplace(wordApp, "{DataNasterii}", candidat["DataNasterii"]);
+                       FindAndReplace(wordApp, "{LoculNasterii}", candidat["LoculNasterii"]);
+                       FindAndReplace(wordApp, "{Strada}", candidat["Strada"]);
+                       FindAndReplace(wordApp, "{Nr}", candidat["Nr"]);
+                       FindAndReplace(wordApp, "{Bloc}", candidat["Bloc"]);
+                       FindAndReplace(wordApp, "{Scara}", candidat["Scara"]);
+                       FindAndReplace(wordApp, "{Ap}", candidat["Ap"]);
+                       FindAndReplace(wordApp, "{Localitate}", candidat["Localitate"]);
+                       FindAndReplace(wordApp, "{Judet}", candidat["Judet"]);
+                       FindAndReplace(wordApp, "{Cp}", candidat["Cp"]);
+                       FindAndReplace(wordApp, "{Telefon}", candidat["Telefon"]);
+                       FindAndReplace(wordApp, "{Studii}", candidat["Studii"]);
+                       FindAndReplace(wordApp, "{Profesia}", candidat["Profesia"]);
+                       FindAndReplace(wordApp, "{LocMunca}", candidat["LocMunca"]);
+                       FindAndReplace(wordApp, "{Presedinte}", presedinte);
+                       FindAndReplace(wordApp, "{Membru1}", membru1);
+                       FindAndReplace(wordApp, "{Membru2}", membru2);
 
-                    List<int> processesaftergen = getRunningProcesses();
-                    Console.WriteLine("COUNT > " + processesbeforegen.Count + "  " + processesaftergen.Count);
-                    killProcesses(processesbeforegen, processesaftergen);
-                }else {
-                    System.Windows.MessageBox.Show("file dose not exist.");
-                    return;
-                }
-            }
 
-        
+                       Console.WriteLine("cserelgetes");
+
+                       object saveFullPath = savePath;
+
+                       aDoc.SaveAs2(ref saveFullPath, ref missing, ref missing, ref missing,
+                       ref missing, ref missing, ref missing,
+                       ref missing, ref missing, ref missing,
+                       ref missing, ref missing, ref missing,
+                       ref missing, ref missing, ref missing);
+
+                       //Close Document:
+
+                       aDoc.Close(ref missing, ref missing, ref missing);
+                       wordApp.Quit(false);
+                      
+                       Marshal.FinalReleaseComObject(wordApp);
+                       string PathToMerge = savePath + ".docx";
+                       if (File.Exists(PathToMerge))
+                       {
+                           wordAppForOutput.Selection.InsertFile(PathToMerge, ref missing, true, ref missing, ref missing);
+                           wordAppForOutput.Selection.InsertBreak(ref pageBreak);
+                           File.Delete(PathToMerge);
+                       }
+                       else
+                       {
+                           Console.WriteLine("dosent exist the file");
+                       }
+
+                       aDoc = null;
+                       wordApp = null;
+                       List<int> processesaftergen = getRunningProcesses();
+                       Console.WriteLine("COUNT > " + processesbeforegen.Count + "  " + processesaftergen.Count);
+                       killProcesses(processesbeforegen, processesaftergen);
+                   }
+                   else
+                   {
+                       System.Windows.MessageBox.Show("file dose not exist.");
+                       return false;
+                   }
+               }
+
+
+               // Clean up!
+               wordDocument.SaveAs(output, ref missing, ref missing,
+                                            ref missing, ref missing, ref missing, 
+                                            ref missing, ref missing, ref missing, ref missing, ref missing);
+               wordDocument.Close(ref missing, ref missing, ref missing);
+               wordAppForOutput.Quit(ref missing, ref missing, ref missing);
+               Marshal.FinalReleaseComObject(wordAppForOutput);
+               wordDocument = null;
+               wordAppForOutput = null;
+           }
+           catch (Exception ex)
+           {
+               System.Windows.MessageBox.Show("Error occured at Report!");
+               return false;
+           }
+           finally
+           {
+               if (createEmptyDoc != null) createEmptyDoc.Close(ref missing, ref missing, ref missing);
+               if (createEmptyDocApp != null)
+               {
+                   createEmptyDocApp.Quit(ref missing, ref missing, ref missing);
+                   Marshal.FinalReleaseComObject(createEmptyDocApp);
+               }
+
+               if (wordDocument != null) wordDocument.Close(ref missing, ref missing, ref missing);
+               if (wordAppForOutput != null)
+               {
+                   wordAppForOutput.Quit(ref missing, ref missing, ref missing);
+                   Marshal.FinalReleaseComObject(wordAppForOutput);
+               }
+
+               if (aDoc != null) aDoc.Close(ref missing, ref missing, ref missing);
+               if (wordApp != null)
+               {
+                   wordApp.Quit(ref missing, ref missing, ref missing);
+                   Marshal.FinalReleaseComObject(wordApp);
+               }
+       
+           }
+
+           return true;
         }
 
 
