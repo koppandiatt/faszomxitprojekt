@@ -116,12 +116,12 @@ namespace Certificari.Views
            
                 if (currentDoc.Path == null || currentDoc.Name == null)
                 {
-                    MessageBox.Show("No one document selected!");
+                    MessageBox.Show("Selectati documentul!");
                     return;
                 }
                 if (_destPath == null)
                 {
-                    MessageBox.Show("No doc destination selected!");
+                    MessageBox.Show("Selectati destinatia salvarii documentului!");
                     return;
                 }
 
@@ -137,12 +137,12 @@ namespace Certificari.Views
         {
             if (currentDoc.Path == null || currentDoc.Name == null)
             {
-                MessageBox.Show("No one document selected!");
+                MessageBox.Show("Selectati documentul!");
                 return;
             }
             if (_destPath == null)
             {
-                MessageBox.Show("No doc destination selected!");
+                MessageBox.Show("Selectati destinatia salvarii documentului!");
                 return;
             }
 

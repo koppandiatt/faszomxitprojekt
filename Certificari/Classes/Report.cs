@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-// Additional references
+﻿// Additional references
 
 using Microsoft.Office.Interop.Word;
-using Microsoft.Office.Core;
-using System.Reflection;
-using Word = Microsoft.Office.Interop.Word;
-using System.IO;
-using System.Diagnostics;
-using System.Drawing.Drawing2D;
-using System.Drawing;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Windows.Controls;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace Certificari.Classes
 {

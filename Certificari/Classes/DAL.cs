@@ -132,12 +132,17 @@ namespace Certificari.Classes
             public const string CANDIDAT = "Candidat";
             public const string DOCUMENT = "Document";
             public const string UNITATE = "Unitate";
+            public const string FIRME = "Firme";
          
         }
 
         public static class baseQuerys
         {
             public const string SCANDIDAT = "SELECT * FROM Candidat WHERE Status = 1";
+            public const string SFIRME = "SELECT * FROM Firme WHERE Status = 1";
+            public const string SPROGRAME = "SELECT * FROM Programe WHERE Status = 1";
+            public const string SCONTRACT = "SELECT * FROM Contracte WHERE Status = 1";
+            public const string SCONFIRME = "SELECT * FROM Con_firme WHERE Status = 1";
             public const string SDOCUMENT = "SELECT * FROM Document WHERE Status = 1";
         }
 

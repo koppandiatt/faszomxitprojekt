@@ -5,7 +5,7 @@
     <Grid>
         <Label Content="Denumirea unitatii:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="408"/>
         <TextBox Name="txtUnitate" Height="23" Padding="2" TextAlignment="Center" Margin="23,36,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <Label Content="Forma de organizare:" HorizontalAlignment="Left" Margin="-184,64,0,0" VerticalAlignment="Top" Width="193"/>
+        <Label Content="Forma de organizare:" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" Width="193"/>
         <Label Content="Denumire scurta pentru diplome:" HorizontalAlignment="Left" Margin="225,64,0,0" VerticalAlignment="Top" Width="193"/>
         <TextBox Name="txtFormaOrg" Height="23" Padding="2" TextAlignment="Center" Margin="23,90,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <TextBox Name="txtDenScurta" Height="23" Padding="2" TextAlignment="Center" Margin="236,90,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>

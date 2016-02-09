@@ -17,16 +17,16 @@
             <TabItem Name="tabOperati" Header="Operatii" Style="{DynamicResource TabItemStyle}">
                 <Grid Background="#FFE5E5E5">
                     <Grid Height="89" VerticalAlignment="Top" Background="#FFE2E0E0">
-                        <RadioButton Content="Candidati" HorizontalAlignment="Left" IsChecked="True" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                        <RadioButton Content="Programe acreditate" HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top"/>
+                        <RadioButton Name="rb_candidat" Content="Candidati" HorizontalAlignment="Left" IsChecked="True" Margin="10,10,0,0" VerticalAlignment="Top" Checked="rb_candidat_Checked"/>
+                        <RadioButton Name="rb_programe" Content="Programe acreditate" HorizontalAlignment="Left" Margin="185,10,0,0" VerticalAlignment="Top" Checked="rb_programe_Checked"/>
                         <Button IsEnabled="True" Content="Adauga" HorizontalAlignment="Left" Margin="10,67,0,-15" VerticalAlignment="Top" Width="75" Click="CandidateAdauga_Click"/>
                         <Button Style="{DynamicResource RedButtonStyle}" Name="stergeStudents" Content="Sterge" HorizontalAlignment="Left" Margin="170,67,0,0" VerticalAlignment="Top" Width="75" Click="stergeStudents_Click"/>
                         <TextBox Name="txtSearch" HorizontalAlignment="Left" Height="23" Padding="2" Margin="54,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="231" KeyUp="txtSearch_KeyUp" TextChanged="txtSearch_TextChanged"/>
-                        <Button Name="btnSearch" Style="{DynamicResource RefreshButtonStyle}" Content="X" HorizontalAlignment="Left" Margin="285,39,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnSearch_Click"/>
+                        <Button Name="btnSearch" Style="{DynamicResource RefreshButtonStyle}" Content="X" HorizontalAlignment="Left" Margin="271,39,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnSearch_Click"/>
                         <Label Content="Cauta:" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Height="28" Width="44"/>
-                        <RadioButton Content="Contracte" HorizontalAlignment="Left" Margin="253,10,0,0" VerticalAlignment="Top"/>
-                        <RadioButton Content="Contracte Firme" HorizontalAlignment="Left" Margin="349,10,0,0" VerticalAlignment="Top"/>
+                        
                         <Button Name="btnListare" Style="{DynamicResource NormalButtonStyle}" Content="Listare" HorizontalAlignment="Left" Margin="90,67,0,0" VerticalAlignment="Top" Width="75" Click="btnListare_Click"/>
+                        <RadioButton Name="rb_firme" Content="Firme" HorizontalAlignment="Left" Margin="104,10,0,0" VerticalAlignment="Top" Checked="rb_firme_Checked"/>
                     </Grid>
                     <DataGrid PreviewMouseRightButtonDown="GridCandidati_PreviewMouseRightButtonDown" Name="GridCandidati" Margin="0,94,0,0" CanUserAddRows="False" AutoGenerateColumns="True">
 
@@ -53,7 +53,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Name="tabNomenclator" Header="Nomenclator" Style="{DynamicResource TabItemStyle}">
+            <TabItem Name="tabNomenclator" Header="Documente" Style="{DynamicResource TabItemStyle}">
 
 
 

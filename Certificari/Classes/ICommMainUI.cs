@@ -8,7 +8,7 @@ namespace Certificari.Classes
 {
     public interface ICommMainUI
     {
-        void updateCandidats();
+        void updateOperatii();
 
         void updateDocumentList();
     }

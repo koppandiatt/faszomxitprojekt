@@ -1,26 +1,15 @@
 ﻿using Certificari.Classes;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Certificari.Views
 {
     /// <summary>
-    /// Interaction logic for Candidat.xaml
+    /// Interaction logic for Firma.xaml
     /// </summary>
-    public partial class Candidat : Window, INotifyPropertyChanged
+    public partial class Firma : Window, INotifyPropertyChanged
     {
 
         private bool _isDetali = false;
@@ -32,22 +21,22 @@ namespace Certificari.Views
 
         private int id = -1;
 
-        private DataTable candidatTable = null;
+        private DataTable firmaTable = null;
 
         private ICommMainUI contextMain;
 
-        public Candidat(bool isDet,DataRow detRow = null,ICommMainUI contextMain = null)
+        public Firma(bool isDet, DataRow detRow = null, ICommMainUI contextMain = null)
         {
             InitializeComponent();
             this.DataContext = this;
             isDetalii = isDet;
             isEnabled = !isDet;
-            btnAdd.Content = ADAUGA;
+            btnSave.Content = ADAUGA;
             this.contextMain = contextMain;
             id = -1;
             if (detRow != null)
             {
-                btnAdd.Content = SALVEAZA;
+                btnSave.Content = SALVEAZA;
                 id =(int) detRow["Id"];
                 loadDatas(detRow);
             }
@@ -63,33 +52,34 @@ namespace Certificari.Views
             }
         }
 
-
-     
         private void loadDatas(DataRow row) {
             try
             {
 
-                txtNumar.Text = row["NrMatricol"] as string;
-                txtNume.Text = row["Nume"] as string;
-                txtPrenume.Text = row["Prenume"] as string;
-                txtTata.Text = row["Tata"] as string;
-                txtMama.Text = row["Mama"] as string;
-                txtCNP.Text = row["CNP"] as string;
-                Console.WriteLine("nasteri" + (string)row["DataNasterii"]);
-                txtDataNasterii.SelectedDate = DateTime.Parse((string) row["DataNasterii"]);
-                txtLoculN.Text = row["LoculNasterii"] as string;
+                txtDenumire.Text = row["Denumire"] as string;
                 txtStrada.Text = row["Strada"] as string;
                 txtNr.Text = row["Nr"] as string;
                 txtBloc.Text = row["Bloc"] as string;
                 txtScara.Text = row["Scara"] as string;
                 txtAp.Text = row["Ap"] as string;
-                txtLocalitatea.Text = row["Localitate"] as string;
+                txtLocalitate.Text = row["Localitate"] as string;
                 txtJudet.Text = row["Judet"] as string;
-                txtCP.Text = row["Cp"] as string;
+                txtCP.Text = row["cp"] as string;
                 txtTelefon.Text = row["Telefon"] as string;
-                txtStudii.Text = row["Studii"] as string;
-                txtProfesia.Text = row["Profesia"] as string;
-                txtLocMunca.Text = row["LocMunca"] as string;
+                txtFax.Text = row["Fax"] as string;
+                txtEmail.Text = row["Email"] as string;
+                txtSite.Text = row["Web"] as string;
+                txtTribunal.Text = row["Tribunal"] as string;
+                txtORC.Text = row["ORC"] as string;
+                txtCF.Text = row["CodFiscal"] as string;
+                txtCUI.Text = row["CUI"] as string;
+                txtBanca.Text = row["Banca"] as string;
+                txtIban.Text = row["IBAN"] as string;
+                txtDriector.Text = row["Director"] as string;
+                txtDirectorEc.Text = row["Director_economic"] as string;
+                txtAltRepr.Text = row["Reprezentant"] as string;
+                txtFunctie.Text = row["Functie"] as string;
+                
             }
             catch (Exception ex)
             {
@@ -155,54 +145,61 @@ namespace Certificari.Views
             string query = null;
             if (id < 0)
             {
-                  query = "INSERT INTO Candidat (" +
-                  "NrMatricol, Nume, Prenume, Tata, Mama, CNP, DataNasterii, LoculNasterii, Strada, Nr, Bloc," +
-                  "Scara, Ap, Localitate, Judet, Cp, Telefon, Studii, Profesia, LocMunca) VALUES ('" +
-                  txtNumar.Text + "','" +
-                  txtNume.Text + "','" +
-                  txtPrenume.Text + "','" +
-                  txtTata.Text + "','" +
-                  txtMama.Text + "','" +
-                  txtCNP.Text + "','" +
-                  txtDataNasterii.SelectedDate.Value.ToShortDateString() + "','" +
-                  txtLoculN.Text + "','" +
+                  query = "INSERT INTO "+ DAL.Tables.FIRME +" (" +
+                  "Denumire, Strada, Nr, Bloc," +
+                  "Scara, Ap, Localitate, Judet, cp, Telefon," +
+                  "Fax, Email, Web, Tribunal, ORC, CodFiscal, CUI, Banca, IBAN, Director, Director_economic, Reprezentant, Functie) VALUES ('" +
+                  txtDenumire.Text + "','" +
                   txtStrada.Text + "','" +
                   txtNr.Text + "','" +
                   txtBloc.Text + "','" +
                   txtScara.Text + "','" +
                   txtAp.Text + "','" +
-                  txtLocalitatea.Text + "','" +
+                  txtLocalitate.Text + "','" +
                   txtJudet.Text + "','" +
                   txtCP.Text + "','" +
                   txtTelefon.Text + "','" +
-                  txtStudii.Text + "','" +
-                  txtProfesia.Text + "','" +
-                  txtLocMunca.Text + "')";
+                  txtFax.Text + "','" +
+                  txtEmail.Text + "','" +
+                  txtSite.Text + "','" +
+                  txtTribunal.Text + "','" +
+                  txtORC.Text + "','" +
+                  txtCF.Text + "','" +
+                  txtCUI.Text + "','" +
+                  txtBanca.Text + "','" +
+                  txtIban.Text + "','" +
+                  txtDriector.Text + "','" +
+                  txtDirectorEc.Text + "','" +
+                  txtAltRepr.Text + "','" +
+                  txtFunctie.Text + "')";
 
             }
             else
             {
-                query = " UPDATE " + DAL.Tables.CANDIDAT + " SET " +
-                         "NrMatricol = '" + txtNumar.Text +
-                         "', Nume = '" + txtNume.Text +
-                         "', Prenume = '" + txtPrenume.Text +
-                         "', Tata = '" + txtTata.Text +
-                         "', Mama = '" + txtMama.Text +
-                         "', CNP = '" + txtCNP.Text +
-                         "', DataNasterii = '" + txtDataNasterii.SelectedDate.Value.ToShortDateString() +
-                         "', LoculNasterii = '" + txtLoculN.Text +
+                query = " UPDATE " + DAL.Tables.FIRME + " SET " +
+                         "Denumire = '" + txtDenumire.Text +
                          "', Strada = '" + txtStrada.Text +
                          "', Nr = '" + txtNr.Text +
                          "', Bloc = '" + txtBloc.Text +
                          "', Scara = '" + txtScara.Text +
                          "', Ap = '" + txtAp.Text +
-                         "', Localitate = '" + txtLocalitatea.Text +
+                         "', Localitate = '" + txtLocalitate.Text +
                          "', Judet = '" + txtJudet.Text +
-                         "', CP = '" + txtCP.Text +
+                         "', cp = '" + txtCP.Text +
                          "', Telefon = '" + txtTelefon.Text +
-                         "', Studii = '" + txtStudii.Text +
-                         "', Profesia = '" + txtProfesia.Text +
-                         "', LocMunca = '" + txtLocMunca.Text + "' WHERE " +
+                         "', Fax = '" + txtFax.Text +
+                         "', Email = '" + txtEmail.Text +
+                         "', Web = '" + txtSite.Text +
+                         "', Tribunal = '" + txtTribunal.Text +
+                         "', ORC = '" + txtORC.Text +
+                         "', CodFiscal = '" + txtCF.Text +
+                         "', CUI = '" + txtCUI.Text +
+                         "', Banca = '" + txtBanca.Text +
+                         "', IBAN = '" + txtIban.Text +
+                         "', Director = '" + txtDriector.Text +
+                         "', Director_economic = '" + txtDirectorEc.Text +
+                         "', Reprezentant = '" + txtAltRepr.Text +
+                         "', Functie = '" + txtFunctie.Text + "' WHERE " +
                          "Id = " + id;
          
             }

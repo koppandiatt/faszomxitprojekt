@@ -1,22 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Certificari.Classes;
+using Certificari.Views;
+using Microsoft.Win32;
+using System;
+using System.Data;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using Certificari.Views;
-using Certificari.Classes;
-using System.Data;
-using System.Windows.Controls.Primitives;
-using Microsoft.Win32;
-using System.IO;
 
 namespace Certificari
 {
@@ -27,13 +18,16 @@ namespace Certificari
     {
 
         private DataTable _DTdocuments;
-        private DataTable _DTcandidats;
+        private DataTable _DToperatii;
+        private string currentOperation;
+        private string currentCase;
 
         
         public MainWindow()
         {
+            currentOperation = DAL.baseQuerys.SCANDIDAT;
+            currentCase = "";
             InitializeComponent();
-           
         }
 
         private void MenuUnitate_Click(object sender, RoutedEventArgs e)
@@ -44,8 +38,22 @@ namespace Certificari
 
         private void CandidateAdauga_Click(object sender, RoutedEventArgs e)
         {
-            Candidat candidat = new Candidat(false,null,this);
-            candidat.ShowDialog();
+            switch (currentCase)
+            {
+                case "Candidati":
+                    Candidat candidat = new Candidat(false,null,this);
+                    candidat.ShowDialog();
+                    break;
+                case "Firme":
+                    Firma firma = new Firma(false,null,this);
+                    firma.ShowDialog();
+                    break;
+                case "Programe acreditate":
+                    break;
+                default:
+                    break;
+            }
+            
            // RefreshCandidati();
         }
 
@@ -65,18 +73,18 @@ namespace Certificari
 
             if (sender is TabControl && tabOperati.IsSelected)
             {
-                updateCandidats();
+                updateOperatii();
             }
             
         }
 
 
-        public void updateCandidats()
+        public void updateOperatii()
         {
             try
             {
-                _DTcandidats = DAL.getInstance().select(DAL.baseQuerys.SCANDIDAT);
-                if (_DTcandidats != null) this.GridCandidati.ItemsSource = _DTcandidats.DefaultView;
+                _DToperatii = DAL.getInstance().select(currentOperation);
+                if (_DToperatii != null) this.GridCandidati.ItemsSource = _DToperatii.DefaultView;
             }
             catch (Exception ex)
             {
@@ -101,7 +109,7 @@ namespace Certificari
             {
                 if (docSrc == String.Empty || docSrc.Trim() == "")
                 {
-                    throw new Exception("Empty document source path!");
+                    throw new Exception("Va rugam selectati calea catre document!");
                 }
                 if (docName == String.Empty || docName.Trim() == "")
                 {
@@ -130,38 +138,56 @@ namespace Certificari
 
         private void Sterge_Click(object sender, RoutedEventArgs e)
         {
-
-
-
-                DataRowView[] deleteRows = new DataRowView[GridDocumentList.SelectedItems.Count];
-                for (int i = 0; i < GridDocumentList.SelectedItems.Count; i++)
-                {
-
-                    deleteRows[i] = (DataRowView)GridDocumentList.SelectedItems[i];
-                }
-                foreach (DataRowView row in deleteRows)
-                {
-                    DAL.getInstance().Delete(DAL.Tables.DOCUMENT,(int) row.Row["Id"]);
-                    _DTdocuments.Rows.Remove(row.Row);
-                }
+            DataRowView[] deleteRows = new DataRowView[GridDocumentList.SelectedItems.Count];
+            for (int i = 0; i < GridDocumentList.SelectedItems.Count; i++)
+            {
+                deleteRows[i] = (DataRowView)GridDocumentList.SelectedItems[i];
+            }
+            foreach (DataRowView row in deleteRows)
+            {
+                DAL.getInstance().Delete(DAL.Tables.DOCUMENT,(int) row.Row["Id"]);
+                _DTdocuments.Rows.Remove(row.Row);
+            }
             
         }
 
         private void stergeStudents_Click(object sender, RoutedEventArgs e)
         {
-
-
-            DataRowView[] deleteRows = new DataRowView[GridCandidati.SelectedItems.Count];
-            for (int i = 0; i < GridCandidati.SelectedItems.Count; i++)
+            switch (currentCase)
             {
-               
-                deleteRows[i] = (DataRowView)GridCandidati.SelectedItems[i];
+                case "Candidati":
+                    DataRowView[] deleteRows = new DataRowView[GridCandidati.SelectedItems.Count];
+                    for (int i = 0; i < GridCandidati.SelectedItems.Count; i++)
+                    {
+
+                        deleteRows[i] = (DataRowView)GridCandidati.SelectedItems[i];
+                    }
+                    foreach (DataRowView row in deleteRows)
+                    {
+                        DAL.getInstance().Delete(DAL.Tables.CANDIDAT, (int)row.Row["Id"]);
+                        _DToperatii.Rows.Remove(row.Row);
+                    }
+                    break;
+                case "Firme":
+                    DataRowView[] deleteFirme = new DataRowView[GridCandidati.SelectedItems.Count];
+                    for (int i = 0; i < GridCandidati.SelectedItems.Count; i++)
+                    {
+
+                        deleteFirme[i] = (DataRowView)GridCandidati.SelectedItems[i];
+                    }
+                    foreach (DataRowView row in deleteFirme)
+                    {
+                        DAL.getInstance().Delete(DAL.Tables.FIRME, (int)row.Row["Id"]);
+                        _DToperatii.Rows.Remove(row.Row);
+                    }
+                    break;
+                case "Programe acreditate":
+                    break;
+                default:
+                    break;
             }
-            foreach (DataRowView row in deleteRows)
-            {
-                DAL.getInstance().Delete(DAL.Tables.CANDIDAT, (int)row.Row["Id"]);
-                _DTcandidats.Rows.Remove(row.Row);
-            }
+
+            
         }
 
         private void btnPath_Click(object sender, RoutedEventArgs e)
@@ -186,8 +212,23 @@ namespace Certificari
         private void Detalii_Click(object sender, RoutedEventArgs e)
         {
             DataRow row = getSelectedRow();
-            Candidat candidat = new Candidat(true,row);
-            candidat.ShowDialog();
+
+            switch (currentCase)
+            {
+                case "Candidati":
+                    Candidat candidat = new Candidat(true,row);
+                    candidat.ShowDialog();
+                    break;
+                case "Firme":
+                    Firma firma = new Firma(true, row);
+                    firma.ShowDialog();
+                    break;
+                case "Programe acreditate":
+                    break;
+                default:
+                    break;
+            }
+            
 
         }
 
@@ -195,15 +236,30 @@ namespace Certificari
         private void Editare_Click(object sender, RoutedEventArgs e)
         {
             DataRow row = getSelectedRow();
-            Candidat candidat = new Candidat(false, row,this);
-            candidat.ShowDialog();
+
+            switch (currentCase)
+            {
+                case "Candidati":
+                    Candidat candidat = new Candidat(false, row,this);
+                    candidat.ShowDialog();
+                    break;
+                case "Firme":
+                    Firma firma = new Firma(false, row, this);
+                    firma.ShowDialog();
+                    break;
+                case "Programe acreditate":
+                    break;
+                default:
+                    break;
+            }
+            
         }
 
         private void btnListare_Click(object sender, RoutedEventArgs e)
         {
             if (GridCandidati.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Error occured: no selected candidati!");
+                MessageBox.Show("Va rugam selectati minim 1 candidat!");
                 return;
             }
              DataRowView[] candidatsRows = new DataRowView[GridCandidati.SelectedItems.Count];
@@ -235,11 +291,12 @@ namespace Certificari
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             string keyWord = txtSearch.Text.ToLower().TrimStart().TrimEnd();
-            var filtered = _DTcandidats.AsEnumerable().Where(
+            var filtered = _DToperatii.AsEnumerable().Where(
                     r => r.Field<String>("NrMatricol").ToLower().Contains(keyWord)
                     || r.Field<String>("Nume").ToLower().Contains(keyWord)
                     || r.Field<String>("Prenume").ToLower().Contains(keyWord)
                     || r.Field<String>("Localitate").ToLower().Contains(keyWord)
+                    || r.Field<String>("CNP").ToLower().Contains(keyWord)
                 );
             if (filtered.Count() > 0)
             {
@@ -253,7 +310,31 @@ namespace Certificari
             }
         }
 
-    
-       
+        private void rb_candidat_Checked(object sender, RoutedEventArgs e)
+        {
+            currentCase = rb_candidat.Content.ToString();
+            currentOperation = DAL.baseQuerys.SCANDIDAT;
+            updateOperatii();
+            Console.WriteLine(currentCase);
+        }
+
+        private void rb_firme_Checked(object sender, RoutedEventArgs e)
+        {
+            currentCase = rb_firme.Content.ToString();
+            currentOperation = DAL.baseQuerys.SFIRME;
+            updateOperatii();
+            Console.WriteLine(currentCase);
+        }
+
+        private void rb_programe_Checked(object sender, RoutedEventArgs e)
+        {
+            currentCase = rb_programe.Content.ToString();
+            currentOperation = DAL.baseQuerys.SPROGRAME;
+            updateOperatii();
+            Console.WriteLine(currentCase);
+        }
+
+        
+
     }
 }

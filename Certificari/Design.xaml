@@ -371,7 +371,7 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Background" Value="#00000000"/>
-                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Foreground" Value="Black" />
             </Trigger>
             <Trigger Property="IsSelected" Value="true">
                 <Setter Property="Background" Value="Black" />
@@ -1618,7 +1618,7 @@
     <SolidColorBrush x:Key="HeaderBorderBrush" Color="#FF979797" />
 
     <SolidColorBrush x:Key="RestaurantDataGridHeaderFontColor" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="RestaurantDataGridSelectedHeaderFontColor" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="RestaurantDataGridSelectedHeaderFontColor" Color="Black" />
 
     <SolidColorBrush x:Key="StatisticsControlBackgroundBrush" Color="#33FFFFFF" />
 
@@ -2391,8 +2391,8 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" TargetName="DGR_Border" Value="{DynamicResource BlueWindow}"/>
-                            <Setter Property="Foreground" TargetName="dataGridCellsPresenter" Value="White"/>
-                            <Setter Property="Foreground" TargetName="dataGridRowHeader" Value="White"/>
+                            <Setter Property="Foreground" TargetName="dataGridCellsPresenter" Value="Orange"/>
+                            <Setter Property="Foreground" TargetName="dataGridRowHeader" Value="Black"/>
                             <Setter Property="FontSize" TargetName="dataGridRowHeader" Value="13.333"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
