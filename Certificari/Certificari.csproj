@@ -97,6 +97,9 @@
     <Compile Include="Views\Listare.xaml.cs">
       <DependentUpon>Listare.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Programe.xaml.cs">
+      <DependentUpon>Programe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Unitate.xaml.cs">
       <DependentUpon>Unitate.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Listare.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Programe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
