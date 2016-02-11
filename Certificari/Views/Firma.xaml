@@ -55,9 +55,9 @@
         <TextBox Name="txtFunctie" Height="23" Padding="2" TextAlignment="Center" Margin="23,538,243,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <TextBox Name="txtAltRepr" Height="23" Padding="2" TextAlignment="Center" Margin="236,538,28,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <Separator Height="20" Margin="10,561,10,0" VerticalAlignment="Top"/>
-        
-        <Button Click="btnAdd_Click" x:Name="btnSave" Content="Salveaza" HorizontalAlignment="Left" Margin="57,609,0,0" VerticalAlignment="Top" Width="133" Height="32" />
-        <Button Click="btnClose_Click" x:Name="btnClose" Content="Iesire" HorizontalAlignment="Left" Margin="253,609,0,0" VerticalAlignment="Top" Width="136" Height="32" />
+
+        <Button Click="btnAdd_Click" x:Name="btnSave" Content="Salveaza" Visibility="{Binding isButtonsEnable}" HorizontalAlignment="Left" Margin="57,609,0,0" VerticalAlignment="Top" Width="133" Height="32" />
+        <Button Click="btnClose_Click" x:Name="btnClose" Content="Iesire" Visibility="{Binding isButtonsEnable}" HorizontalAlignment="Left" Margin="253,609,0,0" VerticalAlignment="Top" Width="136" Height="32" />
         
         <Label Name="labelError" Content="" FontWeight="ExtraBlack" Foreground="Red"  HorizontalContentAlignment="Center" Margin="10,578,15,0" VerticalAlignment="Top"/>
         

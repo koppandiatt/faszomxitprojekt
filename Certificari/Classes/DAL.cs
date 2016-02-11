@@ -130,9 +130,11 @@ namespace Certificari.Classes
         {
 
             public const string CANDIDAT = "Candidat";
+            public const string CONTRACT = "Contracte";
             public const string DOCUMENT = "Document";
             public const string UNITATE = "Unitate";
             public const string FIRME = "Firme";
+            public const string PROGRAME = "Programe";
          
         }
 

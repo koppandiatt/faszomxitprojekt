@@ -1,0 +1,33 @@
+﻿<Window x:Class="Certificari.Views.Contract"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Contract" Height="453" Width="261" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Nr." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="53" Height="25"/>
+        <Label Content="Beneficiar" HorizontalAlignment="Left" Margin="68,10,0,0" VerticalAlignment="Top" Width="171" Height="25"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtNumar" HorizontalAlignment="Left" Padding="2" Height="23" Margin="12,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="51"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtNume" Padding="2" Height="23" Margin="68,35,16,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Label Content="Durata (luni)" HorizontalAlignment="Left" Margin="139,63,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
+        <Label Content="Data Contract" HorizontalAlignment="Left" Margin="12,63,0,0" VerticalAlignment="Top" Width="122" Height="25"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtDurata" Padding="2" Height="23" Margin="139,88,16,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <DatePicker  x:Name="txtData" Margin="12,87,0,0" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="122">
+            <DatePicker.Resources>
+                <Style TargetType="{x:Type DatePickerTextBox}">
+                    <Setter Property="IsReadOnly" Value="{Binding isDetalii}"/>
+                </Style>
+            </DatePicker.Resources>
+        </DatePicker>
+        <Label Content="Valoare in cifre" HorizontalAlignment="Left" Margin="16,119,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtValoarec" HorizontalAlignment="Left" Padding="2" Height="23" Margin="16,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
+        <Label Content="Nr. Matricol" HorizontalAlignment="Left" Margin="139,119,0,0" VerticalAlignment="Top" Width="100" Height="25"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtMatricol" Padding="2" Height="23" Margin="139,144,16,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboProgram" Margin="16,267,16,0" VerticalAlignment="Top"/>
+        <Label Content="Program" HorizontalAlignment="Left" Margin="16,230,0,0" VerticalAlignment="Top" Width="191" Height="25"/>
+        <Label Content="Valoare in litere" HorizontalAlignment="Left" Margin="16,172,0,0" VerticalAlignment="Top" Width="223" Height="25"/>
+        <TextBox IsReadOnly="{Binding isDetalii}" x:Name="txtValoarel" HorizontalAlignment="Left" Padding="2" Height="23" Margin="16,202,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223"/>
+        <Label Name="labelError" Content="" FontWeight="ExtraBlack" Foreground="Red"  HorizontalContentAlignment="Center" Margin="9,309,16,0" VerticalAlignment="Top"/>
+
+        <Button Visibility="{Binding isButtonsEnable}" x:Name="btnSaveContract" Content="Salveaza" Margin="59,355,59,0" Height="27" Click="btnSaveContract_Click" Width="Auto" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

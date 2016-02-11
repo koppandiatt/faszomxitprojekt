@@ -27,6 +27,7 @@
                         
                         <Button Name="btnListare" Style="{DynamicResource NormalButtonStyle}" Content="Listare" HorizontalAlignment="Left" Margin="90,67,0,0" VerticalAlignment="Top" Width="75" Click="btnListare_Click"/>
                         <RadioButton Name="rb_firme" Content="Firme" HorizontalAlignment="Left" Margin="104,10,0,0" VerticalAlignment="Top" Checked="rb_firme_Checked"/>
+                        <RadioButton x:Name="rb_contracte" Content="Contracte" HorizontalAlignment="Left" Margin="348,10,0,0" VerticalAlignment="Top" Checked="rb_contracte_Checked"/>
                     </Grid>
                     <DataGrid PreviewMouseRightButtonDown="GridCandidati_PreviewMouseRightButtonDown" Name="GridCandidati" Margin="0,94,0,0" CanUserAddRows="False" AutoGenerateColumns="True">
 
@@ -47,7 +48,7 @@
                             <ContextMenu Name="menuCandi" ItemsSource="{Binding RelativeSource={RelativeSource Self}}">
                                 <MenuItem Header="Editare" Click="Editare_Click" />
                                 <MenuItem Header="Detalii" Click="Detalii_Click"  />
-                                <MenuItem Header="Listare documente"  />
+                                <!--  <MenuItem Header="Listare documente"  /> -->
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                     </DataGrid>
@@ -86,18 +87,16 @@
         </TabControl>
         <Menu Height="20" VerticalAlignment="Top" Background="#FFCDCDCD">
             <MenuItem Header="General">
-                <MenuItem Header="Baza de date">
+               <!-- <MenuItem Header="Baza de date">
                     <MenuItem x:Name="MenuImportDB" Header="Import"/>
                     <MenuItem x:Name="MenuExportDB" Header="Export"/>
-                </MenuItem>
+                </MenuItem> -->
                 <MenuItem x:Name="MenuUnitate" Click="MenuUnitate_Click" Header="Unitate"></MenuItem>
                 <Separator></Separator>
-                <MenuItem x:Name="MenuIesire" Header="Iesire"></MenuItem>
+                <MenuItem x:Name="MenuIesire" Click="MenuIesire_Click" Header="Iesire"></MenuItem>
             </MenuItem>
             <MenuItem Header="Ajutor">
-                <MenuItem x:Name="MenuManual" Header="Manual"></MenuItem>
-                <Separator></Separator>
-                <MenuItem x:Name="MenuAbout" Header="Despre Soft"></MenuItem>
+                <MenuItem x:Name="MenuAbout" Click="MenuAbout_Click" Header="Despre Soft"></MenuItem>
             </MenuItem>
         </Menu>
 

@@ -147,7 +147,7 @@ namespace Certificari.Classes
             }
             catch (Exception ex)
             {
-                System.Windows.MessageBox.Show("Error occured at Report!");
+                System.Windows.MessageBox.Show("Error occured at Report!\n"+ex.Message);
                 return false;
             }
             finally

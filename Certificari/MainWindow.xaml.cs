@@ -16,18 +16,26 @@ namespace Certificari
     /// </summary>
     public partial class MainWindow : Window, ICommMainUI
     {
-
+        protected string key = "199e162ad3dcb352c1f877bf0cd6137a";
         private DataTable _DTdocuments;
         private DataTable _DToperatii;
         private string currentOperation;
         private string currentCase;
-
         
         public MainWindow()
         {
-            currentOperation = DAL.baseQuerys.SCANDIDAT;
-            currentCase = "";
-            InitializeComponent();
+            try
+            {
+                currentOperation = DAL.baseQuerys.SCANDIDAT;
+                currentCase = "";
+                InitializeComponent();
+                //DataTable license = DAL.getInstance().select("Select * From LICENSE WHERE Key=" + key);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         private void MenuUnitate_Click(object sender, RoutedEventArgs e)
@@ -49,6 +57,12 @@ namespace Certificari
                     firma.ShowDialog();
                     break;
                 case "Programe acreditate":
+                    Programe program = new Programe(false,null,this);
+                    program.ShowDialog();
+                    break;
+                case "Contracte":
+                    Contract contract = new Contract(false, null, this);
+                    contract.ShowDialog();
                     break;
                 default:
                     break;
@@ -182,6 +196,30 @@ namespace Certificari
                     }
                     break;
                 case "Programe acreditate":
+                    DataRowView[] deleteProgram = new DataRowView[GridCandidati.SelectedItems.Count];
+                    for (int i = 0; i < GridCandidati.SelectedItems.Count; i++)
+                    {
+
+                        deleteProgram[i] = (DataRowView)GridCandidati.SelectedItems[i];
+                    }
+                    foreach (DataRowView row in deleteProgram)
+                    {
+                        DAL.getInstance().Delete(DAL.Tables.PROGRAME, (int)row.Row["Id"]);
+                        _DToperatii.Rows.Remove(row.Row);
+                    }
+                    break;
+                case "Contracte":
+                    DataRowView[] deleteContract = new DataRowView[GridCandidati.SelectedItems.Count];
+                    for (int i = 0; i < GridCandidati.SelectedItems.Count; i++)
+                    {
+
+                        deleteContract[i] = (DataRowView)GridCandidati.SelectedItems[i];
+                    }
+                    foreach (DataRowView row in deleteContract)
+                    {
+                        DAL.getInstance().Delete(DAL.Tables.CONTRACT, (int)row.Row["Id"]);
+                        _DToperatii.Rows.Remove(row.Row);
+                    }
                     break;
                 default:
                     break;
@@ -224,6 +262,12 @@ namespace Certificari
                     firma.ShowDialog();
                     break;
                 case "Programe acreditate":
+                    Programe program = new Programe(true, row);
+                    program.ShowDialog();
+                    break;
+                case "Contracte":
+                    Contract contract = new Contract(true, row);
+                    contract.ShowDialog();
                     break;
                 default:
                     break;
@@ -248,6 +292,12 @@ namespace Certificari
                     firma.ShowDialog();
                     break;
                 case "Programe acreditate":
+                    Programe program = new Programe(false, row, this);
+                    program.ShowDialog();
+                    break;
+                case "Contracte":
+                    Contract contract = new Contract(false, row, this);
+                    contract.ShowDialog();
                     break;
                 default:
                     break;
@@ -298,6 +348,46 @@ namespace Certificari
                     || r.Field<String>("Localitate").ToLower().Contains(keyWord)
                     || r.Field<String>("CNP").ToLower().Contains(keyWord)
                 );
+            switch (currentCase)
+            {
+                case "Candidati":
+                    filtered = _DToperatii.AsEnumerable().Where(
+                        r => r.Field<String>("NrMatricol").ToLower().Contains(keyWord)
+                        || r.Field<String>("Nume").ToLower().Contains(keyWord)
+                        || r.Field<String>("Prenume").ToLower().Contains(keyWord)
+                        || r.Field<String>("Localitate").ToLower().Contains(keyWord)
+                        || r.Field<String>("CNP").ToLower().Contains(keyWord)
+                    );
+                    break;
+                case "Firme":
+                    filtered = _DToperatii.AsEnumerable().Where(
+                        r => r.Field<String>("Denumire").ToLower().Contains(keyWord)
+                        || r.Field<String>("Localitate").ToLower().Contains(keyWord)
+                        || r.Field<String>("Telefon").ToLower().Contains(keyWord)
+                        || r.Field<String>("Email").ToLower().Contains(keyWord)
+                        || r.Field<String>("ORC").ToLower().Contains(keyWord)
+                    );
+                    break;
+                case "Programe acreditate":
+                    filtered = _DToperatii.AsEnumerable().Where(
+                        r => r.Field<String>("Denumire").ToLower().Contains(keyWord)
+                        || r.Field<String>("SerieA").ToLower().Contains(keyWord)
+                        || r.Field<String>("Calificare").ToLower().Contains(keyWord)
+                        || r.Field<String>("Domeniu").ToLower().Contains(keyWord)
+                        || r.Field<String>("COR").ToLower().Contains(keyWord)
+                    );
+                    break;
+                case "Contracte":
+                    filtered = _DToperatii.AsEnumerable().Where(
+                        r => r.Field<String>("NrContract").ToLower().Contains(keyWord)
+                        || r.Field<String>("Beneficiar").ToLower().Contains(keyWord)
+                        || r.Field<String>("ProgramContract").ToLower().Contains(keyWord)
+                    );
+                    break;
+                default:
+                    break;
+            }
+            
             if (filtered.Count() > 0)
             {
                 DataTable dt = new DataTable();
@@ -334,7 +424,24 @@ namespace Certificari
             Console.WriteLine(currentCase);
         }
 
-        
+        private void rb_contracte_Checked(object sender, RoutedEventArgs e)
+        {
+            currentCase = rb_contracte.Content.ToString();
+            currentOperation = DAL.baseQuerys.SCONTRACT;
+            updateOperatii();
+            Console.WriteLine(currentCase);
+        }
+
+        private void MenuAbout_Click(object sender, RoutedEventArgs e)
+        {
+            Despre d = new Despre();
+            d.ShowDialog();
+        }
+
+        private void MenuIesire_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
 
     }
 }

@@ -67,10 +67,6 @@
             </TabItem>
             <TabItem Name="tabPrograme" Header="Program pregatire" Style="{DynamicResource TabItemStyle}">
                 <Grid Background="#FFE5E5E5"  >
-                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,508" TextWrapping="Wrap" Text="Numar Matricol" VerticalAlignment="Bottom"/>
-                    <TextBox Name="txtNumerMat" Height="23" Margin="10,0,329,480" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom"/>
-                    <TextBlock Margin="221,0,85,503" TextWrapping="Wrap" Text="Nume si prenume candidat" VerticalAlignment="Bottom" Height="21"/>
-                    <TextBox Name="txtNumePre" Height="23" Margin="221,0,10,480" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom"/>
                     <TextBlock TextAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,447" TextWrapping="Wrap" Text="Program" VerticalAlignment="Bottom" Height="19" Width="51"/>
                     <ComboBox Name="comboProgram" Margin="79,0,10,447" VerticalAlignment="Bottom"/>
                     <TextBlock HorizontalAlignment="Left" Height="20" Margin="10,107,0,0" TextWrapping="Wrap" Text="Perioada pregatire" VerticalAlignment="Top" Width="112"/>
@@ -97,7 +93,7 @@
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Note examen absolvire" Margin="230,248,10,47">
+                    <!--<GroupBox Header="Note examen absolvire" Margin="230,248,10,47">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="53*"/>
@@ -124,17 +120,48 @@
                             <TextBlock TextAlignment="Left" Margin="27,0,21,149" TextWrapping="Wrap" RenderTransformOrigin="0.442,1.28" Height="25" VerticalAlignment="Bottom" Text="Media" Grid.Column="1" Grid.RowSpan="2"/>
                         </Grid>
 
-                    </GroupBox>
-
+                    </GroupBox>-->
+                    <Button Visibility="{Binding isButtonsEnable}" x:Name="btnSaveProgram" Content="Salveaza" Margin="174,0,185,6" Height="27" Click="btnSaveProgram_Click" Width="Auto" VerticalAlignment="Bottom"/>
                 </Grid>
             </TabItem>
-            <TabItem Name="tabContract" Header="Contract" Style="{DynamicResource TabItemStyle}">
+            <TabItem Name="tabContract" Header="Certificat" Style="{DynamicResource TabItemStyle}">
                 <Grid Background="#FFE5E5E5" >
+                    <TextBlock HorizontalAlignment="Left" Margin="10,54,0,0" TextWrapping="Wrap" Text="Numar Ordine" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtNrOrdine" HorizontalAlignment="Left" Height="26" Margin="10,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,111,0,0" TextWrapping="Wrap" Text="Serie" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtSerie" HorizontalAlignment="Left" Height="26" Margin="10,132,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,172,0,0" TextWrapping="Wrap" Text="Numar" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtNumarCert" HorizontalAlignment="Left" Height="26" Margin="10,193,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,230,0,0" TextWrapping="Wrap" Text="Data eliberarii" VerticalAlignment="Top" Width="120"/>
+                    <DatePicker x:Name="dateEliberare" HorizontalAlignment="Left" Margin="10,251,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Button Visibility="{Binding isButtonsEnable}" x:Name="btnSaveCertificat" Content="Salveaza certificat" Margin="269,0,45,432" Height="27" Click="btnSaveCertificat_Click" Width="Auto" VerticalAlignment="Bottom"/>
+                    <Button Visibility="{Binding isButtonsEnable}" x:Name="btnSaveListare" Content="Listare Diploma" Margin="269,0,45,376" Height="27" Click="btnSaveListare_Click" Width="Auto" VerticalAlignment="Bottom"/>
+                    <Button Visibility="{Binding isButtonsEnable}" x:Name="btnSaveListareFata" Content="Listare Supliment Fata" Margin="269,0,45,315" Height="27" Click="btnSaveListareFata_Click" Width="Auto" VerticalAlignment="Bottom"/>
+                    <Button Visibility="{Binding isButtonsEnable}" x:Name="btnSaveListareSpate" Content="Listare Supliment Spate" Margin="269,0,45,256" Height="27" Click="btnSaveListareSpate_Click" Width="Auto" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="txtObservatii" HorizontalAlignment="Left" Height="103" Margin="10,356,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="472"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,335,0,0" TextWrapping="Wrap" Text="Observatii" VerticalAlignment="Top" Width="120"/>
 
                 </Grid>
             </TabItem>
             <TabItem Name="tabIncasari" Header="Incasari" Style="{DynamicResource TabItemStyle}">
                 <Grid Background="#FFE5E5E5" >
+                    <ListBox x:Name="listIncasari" HorizontalAlignment="Left" Height="426" Margin="10,98,0,0" VerticalAlignment="Top" Width="472" ItemsSource="{Binding}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Data}"></TextBlock>
+                                    <TextBlock FontSize="16" Foreground="Green" Text="{Binding Valoare}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button Visibility="{Binding isButtonsEnable}" x:Name="btnAdauga" Content="Adauga" Margin="310,0,76,441" Height="26" Click="btnAdauga_Click" Width="Auto" VerticalAlignment="Bottom"/>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="10,46,0,0" TextWrapping="Wrap" Text="Data incasarii" VerticalAlignment="Top" Width="150"/>
+                    <DatePicker x:Name="dateIncasare" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Width="150"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="176,49,0,0" TextWrapping="Wrap" Text="Valoarea" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtValoare" HorizontalAlignment="Left" Height="26" Margin="176,67,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Button Visibility="Hidden" x:Name="btnSterge" Style="{DynamicResource RedButtonStyle}" Content="Sterge" Margin="431,0,10,441" Height="26" Click="btnSterge_Click" Width="Auto" VerticalAlignment="Bottom"/>
 
                 </Grid>
             </TabItem>
